@@ -1,0 +1,62 @@
+{
+  "nodes": {
+    "nixCats": {
+      "locked": {
+        "dir": "nix",
+        "lastModified": 1728945249,
+        "narHash": "sha256-WeA1oMjijjqEHsPDZ1vl9SU7Yt6365rLTQjwNjzWgBY=",
+        "owner": "BirdeeHub",
+        "repo": "nixCats-nvim",
+        "rev": "132e968264ccb9e7e4ccfc83fd9145d0516e5cd1",
+        "type": "github"
+      },
+      "original": {
+        "dir": "nix",
+        "owner": "BirdeeHub",
+        "repo": "nixCats-nvim",
+        "type": "github"
+      }
+    },
+    "nixpkgs": {
+      "locked": {
+        "lastModified": 1729265718,
+        "narHash": "sha256-4HQI+6LsO3kpWTYuVGIzhJs1cetFcwT7quWCk/6rqeo=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "ccc0c2126893dd20963580b6478d1a10a4512185",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "ref": "nixpkgs-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "plugins-auto-save": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1728590199,
+        "narHash": "sha256-NN03WnGyb6IOomNW6ZdoHR1apnOxTnGGl/zRd24Kl9k=",
+        "owner": "okuuva",
+        "repo": "auto-save.nvim",
+        "rev": "5fbcaac0a2698c87a9a1bd2083cb6949505cca12",
+        "type": "github"
+      },
+      "original": {
+        "owner": "okuuva",
+        "repo": "auto-save.nvim",
+        "type": "github"
+      }
+    },
+    "root": {
+      "inputs": {
+        "nixCats": "nixCats",
+        "nixpkgs": "nixpkgs",
+        "plugins-auto-save": "plugins-auto-save"
+      }
+    }
+  },
+  "root": "root",
+  "version": 7
+}
