@@ -47,11 +47,28 @@
         "type": "github"
       }
     },
+    "plugins-large_file": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1711288079,
+        "narHash": "sha256-0yxPl242N5pi4CvR1TsD+yzkps2Ej9pAHXWOMRoOazk=",
+        "owner": "mireq",
+        "repo": "large_file",
+        "rev": "d9740134f80994d56f50e2931ba9307f49e420dc",
+        "type": "github"
+      },
+      "original": {
+        "owner": "mireq",
+        "repo": "large_file",
+        "type": "github"
+      }
+    },
     "root": {
       "inputs": {
         "nixCats": "nixCats",
         "nixpkgs": "nixpkgs",
-        "plugins-auto-save": "plugins-auto-save"
+        "plugins-auto-save": "plugins-auto-save",
+        "plugins-large_file": "plugins-large_file"
       }
     }
   },

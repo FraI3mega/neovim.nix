@@ -10,6 +10,9 @@ if colorschemeName == "catppuccin-mocha" then
       which_key = true,
       barbar = true,
       notify = true,
+      neogit = true,
+      diffview = true,
+      fidget = true,
     },
   })
 end

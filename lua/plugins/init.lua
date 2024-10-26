@@ -1,5 +1,16 @@
 require("plugins.colorscheme")
--- NOTE: you can check if you included the category with the thing wherever you want.
+
+require("large_file").setup({
+	size_limit = 4 * 1024 * 1024, -- 4 MB
+	buffer_options = {
+		swapfile = false,
+		bufhidden = "unload",
+		buftype = "nowrite",
+		undolevels = -1,
+	},
+	on_large_file_read_pre = function(ev) end,
+})
+
 if nixCats("general.extra") then
 	-- I didnt want to bother with lazy loading this.
 	-- I could put it in opt and put it in a spec anyway
@@ -173,6 +184,13 @@ require("lze").load({
 		end,
 	},
 	{
+		"nvim-autopairs",
+		event = "InsertEnter",
+		after = function(plugin)
+			require("nvim-autopairs").setup({})
+		end,
+	},
+	{
 		"nvim-surround",
 		event = "DeferredUIEnter",
 		-- keys = "",
@@ -240,14 +258,6 @@ require("lze").load({
 		-- colorscheme = "",
 		after = function(plugin)
 			require("gitsigns").setup({
-				-- See `:help gitsigns.txt`
-				signs = {
-					add = { text = "+" },
-					change = { text = "~" },
-					delete = { text = "_" },
-					topdelete = { text = "‾" },
-					changedelete = { text = "~" },
-				},
 				on_attach = function(bufnr)
 					local gs = package.loaded.gitsigns
 
@@ -296,7 +306,6 @@ require("lze").load({
 					map("n", "<leader>gb", function()
 						gs.blame_line({ full = false })
 					end, { desc = "git blame line" })
-					map("n", "<leader>gd", gs.diffthis, { desc = "git diff against index" })
 					map("n", "<leader>gD", function()
 						gs.diffthis("~")
 					end, { desc = "git diff against last commit" })
@@ -309,10 +318,127 @@ require("lze").load({
 					map({ "o", "x" }, "ih", ":<C-U>Gitsigns select_hunk<CR>", { desc = "select git hunk" })
 				end,
 			})
-			vim.cmd([[hi GitSignsAdd guifg=#04de21]])
-			vim.cmd([[hi GitSignsChange guifg=#83fce6]])
-			vim.cmd([[hi GitSignsDelete guifg=#fa2525]])
 		end,
+	},
+	{
+		"neogit",
+		event = "DeferredUIEnter",
+		keys = {
+			{ "<leader>gn",  mode = "n",               desc = "Neogit" },
+			{ "<leader>gnt", "<cmd>Neogit<cr>",        mode = "n",     desc = "Open neogit [t]ab page" },
+			{ "<leader>gnc", "<cmd>Neogit commit<cr>", mode = "n",     desc = "Open neogit [c]ommit page" },
+		},
+		after = function(plugin)
+			require("neogit").setup({
+				-- graph_style = vim.env.TERM == "xterm-kitty" and "kitty" or "unicode",
+				graph_style = "unicode",
+			})
+		end,
+	},
+	{
+		"diffview.nvim",
+		cmd = { "DiffviewOpen" },
+		dep_of = "neogit",
+		before = function(plugin)
+			vim.opt.fillchars:append({ diff = "╱" })
+		end,
+		after = function(plugin)
+			require("diffview").setup({})
+		end,
+		keys = {
+			{ "<leader>gd", "<cmd>DiffviewOpen<cr>", mode = "n", desc = "Open diffview" },
+		},
+	},
+	{
+		"flash.nvim",
+		event = "DeferredUIEnter",
+		keys = {
+			{
+				"s",
+				mode = { "n", "x", "o" },
+				function()
+					require("flash").jump()
+				end,
+				desc = "Flash",
+			},
+			{
+				"S",
+				mode = { "n", "x", "o" },
+				function()
+					require("flash").treesitter()
+				end,
+				desc = "Flash Treesitter",
+			},
+			{
+				"r",
+				mode = "o",
+				function()
+					require("flash").remote()
+				end,
+				desc = "Remote Flash",
+			},
+			{
+				"R",
+				mode = { "o", "x" },
+				function()
+					require("flash").treesitter_search()
+				end,
+				desc = "Treesitter Search",
+			},
+			{
+				"<c-s>",
+				mode = { "c" },
+				function()
+					require("flash").toggle()
+				end,
+				desc = "Toggle Flash Search",
+			},
+		},
+	},
+	{
+		"todo-comments.nvim",
+		event = "DeferredUIEnter",
+		after = function(plugin)
+			require("todo-comments").setup({})
+			vim.keymap.set("n", "<leader>ft", "<cmd>TodoTelescope<cr>", { desc = "Find [t]odo" })
+		end,
+	},
+	{
+		"trouble.nvim",
+		cmd = "Trouble",
+		after = function(plugin)
+			require("trouble").setup({})
+
+			local open_with_trouble = require("trouble.sources.telescope").open
+
+			-- Use this to add more results without clearing the trouble list
+
+			local telescope = require("telescope")
+
+			telescope.setup({
+				defaults = {
+					mappings = {
+						i = { ["<c-t>"] = open_with_trouble },
+						n = { ["<c-t>"] = open_with_trouble },
+					},
+				},
+			})
+		end,
+		keys = {
+			{ "<leader>x",  desc = "Trouble" },
+			{
+				"<leader>xX",
+				"<cmd>Trouble diagnostics toggle<cr>",
+				desc = "Trouble Workspace Diagnostics",
+			},
+			{
+				"<leader>xX",
+				"<cmd>Trouble diagnostics toggle filter.buf=0<cr>",
+				desc = "Trouble Buffer Diagnostics",
+			},
+			{ "<leader>xt", "<cmd>Trouble todo<cr>",                               desc = "Trouble Todo" },
+			{ "<leader>xT", "<cmd>Trouble todo filter={tag={TODO,FIX,FIXME}}<cr>", desc = "Trouble Todo/Fix/Fixme" },
+		},
 	},
 	{
 		"which-key.nvim",

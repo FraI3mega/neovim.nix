@@ -25,6 +25,10 @@
       flake = false;
     };
 
+    "plugins-large_file" = {
+      url = "github:mireq/large_file";
+      flake = false;
+    };
     # neovim-nightly-overlay = {
     #   url = "github:nix-community/neovim-nightly-overlay";
     # };
@@ -164,6 +168,8 @@
             dressing-nvim
             nvim-nio
             nvim-notify
+            nvim-autopairs
+            pkgs.neovimPlugins.large_file
           ];
           extra = [
             oil-nvim
@@ -254,11 +260,14 @@
             barbecue-nvim
             nvim-navic
             gitsigns-nvim
+            neogit
+            diffview-nvim
             vim-sleuth
             vim-fugitive
             vim-rhubarb
             nvim-surround
             dial-nvim
+            flash-nvim
             pkgs.neovimPlugins.auto-save
           ];
           extra = with pkgs.vimPlugins; [
@@ -269,6 +278,9 @@
             indent-blankline-nvim
             vim-startuptime
             aerial-nvim
+            trouble-nvim
+            todo-comments-nvim
+            nvim-bqf
           ];
         };
       };

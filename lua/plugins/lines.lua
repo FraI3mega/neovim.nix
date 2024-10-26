@@ -61,7 +61,9 @@ return {
 		"barbecue.nvim",
 		event = "DeferredUIEnter",
 		after = function(plugin)
-			require("barbecue").setup({})
+			require("barbecue").setup({
+				theme = "catppuccin-mocha",
+			})
 		end,
 	},
 }
