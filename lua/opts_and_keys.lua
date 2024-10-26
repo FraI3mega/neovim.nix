@@ -108,8 +108,6 @@ vim.keymap.set("n", "N", "Nzzzv", { desc = "Previous Search Result" })
 
 vim.keymap.set("n", "[b", "<cmd>bprev<CR>", { desc = "Previous buffer" })
 vim.keymap.set("n", "]b", "<cmd>bnext<CR>", { desc = "Next buffer" })
-vim.keymap.set("n", "<leader><leader>l", "<cmd>b#<CR>", { desc = "Last buffer" })
-vim.keymap.set("n", "<leader><leader>d", "<cmd>bdelete<CR>", { desc = "delete buffer" })
 
 vim.keymap.set("n", "k", "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
 vim.keymap.set("n", "j", "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
@@ -174,3 +172,5 @@ if nixCats("languages") then
     dap = {},
   }
 end
+
+vim.notify = require("notify")

@@ -1,9 +1,4 @@
-local colorschemeName = nixCats("colorscheme")
--- Could I lazy load on colorscheme with lze?
--- sure. But I was going to call vim.cmd.colorscheme() during startup anyway
--- this is just an example, feel free to do a better job!
-vim.cmd.colorscheme(colorschemeName)
-
+require("plugins.colorscheme")
 -- NOTE: you can check if you included the category with the thing wherever you want.
 if nixCats("general.extra") then
 	-- I didnt want to bother with lazy loading this.
@@ -12,6 +7,7 @@ if nixCats("general.extra") then
 	-- but why... I guess I could make it load
 	-- after the other lze definitions in the next call using priority value?
 	-- didnt seem necessary.
+
 	vim.g.loaded_netrwPlugin = 1
 	require("oil").setup({
 		default_file_explorer = true,
@@ -42,13 +38,63 @@ if nixCats("general.extra") then
 	})
 	vim.keymap.set("n", "-", "<cmd>Oil<CR>", { noremap = true, desc = "Open Parent Directory" })
 	vim.keymap.set("n", "<leader>-", "<cmd>Oil .<CR>", { noremap = true, desc = "Open nvim root directory" })
+
+	local smart_splits = require("smart-splits")
+	smart_splits.setup({
+		ignored_filetypes = { "nofile", "quickfix", "qf", "prompt" },
+		ignored_buftypes = { "nofile" },
+	})
+
+	vim.keymap.set("n", "<C-H>", function()
+		smart_splits.move_cursor_left()
+	end, { desc = "Move to right split" })
+	vim.keymap.set("n", "<C-J>", function()
+		smart_splits.move_cursor_down()
+	end, { desc = "Move to below split" })
+	vim.keymap.set("n", "<C-K>", function()
+		smart_splits.move_cursor_up()
+	end, { desc = "Move to above split" })
+	vim.keymap.set("n", "<C-L>", function()
+		smart_splits.move_cursor_right()
+	end, { desc = "Move to left split" })
+	vim.keymap.set("n", "<A-h>", function()
+		smart_splits.resize_left()
+	end, { desc = "Resize right split" })
+	vim.keymap.set("n", "<A-j>", function()
+		smart_splits.resize_down()
+	end, { desc = "Resize below split" })
+	vim.keymap.set("n", "<A-k>", function()
+		smart_splits.resize_up()
+	end, { desc = "Resize above split" })
+	vim.keymap.set("n", "<A-l>", function()
+		smart_splits.resize_right()
+	end, { desc = "Resize left split" })
+
+	require("persisted").branch = function()
+		local branch = vim.fn.systemlist("git branch --show-current")[1]
+		return vim.v.shell_error == 0 and branch or nil
+	end
+
+	require("persisted").setup({
+		use_git_branch = true, -- Include the git branch in the session file name?
+		autoload = true,     -- Automatically load the session for the cwd on Neovim startup?
+	})
+
+	vim.opt.sessionoptions:append("globals")
+	vim.api.nvim_create_autocmd({ "User" }, {
+		pattern = "PersistedSavePre",
+		group = vim.api.nvim_create_augroup("PersistedHooks", {}),
+		callback = function()
+			vim.api.nvim_exec_autocmds("User", { pattern = "SessionSavePre" })
+		end,
+	})
 end
 
 require("lze").load({
 	{ import = "plugins.telescope" },
 	{ import = "plugins.treesitter" },
 	{ import = "plugins.completion" },
-	{ import = "plugins.lualine" },
+	{ import = "plugins.lines" },
 	{ import = "plugins.language-specific" },
 	{ import = "plugins.neotest" },
 	{
@@ -111,6 +157,15 @@ require("lze").load({
 		end,
 	},
 	{
+		"nvim-navic",
+		dep_of = "barbecue.nvim",
+		after = function(plugin)
+			require("nvim-navic").setup({
+				lsp = { auto_attach = true },
+			})
+		end,
+	},
+	{
 		"indent-blankline.nvim",
 		event = "DeferredUIEnter",
 		after = function(plugin)
@@ -151,6 +206,16 @@ require("lze").load({
 					return false
 				end,
 			})
+		end,
+	},
+	{
+		"aerial.nvim",
+		cmd = { "AerialToggle", "AerialNavToggle" },
+		keys = {
+			{ "<leader>wS", "<cmd>AerialToggle<cr>", mode = "n", desc = "[S]ymbols outline" },
+		},
+		after = function(plugin)
+			require("aerial").setup({ show_guides = true })
 		end,
 	},
 	{
@@ -259,24 +324,26 @@ require("lze").load({
 		after = function(plugin)
 			require("which-key").setup({})
 			require("which-key").add({
-				{ "<leader><leader>",  group = "buffer commands" },
-				{ "<leader><leader>_", hidden = true },
-				{ "<leader>c",         group = "[c]ode" },
-				{ "<leader>c_",        hidden = true },
-				{ "<leader>d",         group = "[d]ocument" },
-				{ "<leader>d_",        hidden = true },
-				{ "<leader>g",         group = "[g]it" },
-				{ "<leader>g_",        hidden = true },
-				{ "<leader>m",         group = "[m]arkdown" },
-				{ "<leader>m_",        hidden = true },
-				{ "<leader>r",         group = "[r]ename" },
-				{ "<leader>r_",        hidden = true },
-				{ "<leader>s",         group = "[s]earch" },
-				{ "<leader>s_",        hidden = true },
-				{ "<leader>t",         group = "[t]oggles" },
-				{ "<leader>t_",        hidden = true },
-				{ "<leader>w",         group = "[w]orkspace" },
-				{ "<leader>w_",        hidden = true },
+				{ "<leader>b",   group = "[b]uffer" },
+				{ "<leader>b_",  hidden = true },
+				{ "<leader>bs",  group = "[s]ort" },
+				{ "<leader>bs_", hidden = true },
+				{ "<leader>c",   group = "[c]ode" },
+				{ "<leader>c_",  hidden = true },
+				{ "<leader>d",   group = "[d]ocument" },
+				{ "<leader>d_",  hidden = true },
+				{ "<leader>g",   group = "[g]it" },
+				{ "<leader>g_",  hidden = true },
+				{ "<leader>m",   group = "[m]arkdown" },
+				{ "<leader>m_",  hidden = true },
+				{ "<leader>r",   group = "[r]ename" },
+				{ "<leader>r_",  hidden = true },
+				{ "<leader>s",   group = "[s]earch" },
+				{ "<leader>s_",  hidden = true },
+				{ "<leader>t",   group = "[t]oggles" },
+				{ "<leader>t_",  hidden = true },
+				{ "<leader>w",   group = "[w]orkspace" },
+				{ "<leader>w_",  hidden = true },
 				-- { "<leader>T",         group = "[T]ests" },
 				-- { "<leader>T_",        hidden = true },
 			})

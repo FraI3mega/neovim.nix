@@ -163,10 +163,13 @@
             plenary-nvim
             dressing-nvim
             nvim-nio
+            nvim-notify
           ];
           extra = [
             oil-nvim
             nvim-web-devicons
+            smart-splits-nvim
+            persisted-nvim
           ];
 
           themer = with pkgs.vimPlugins; (builtins.getAttr categories.colorscheme {
@@ -247,6 +250,9 @@
           always = with pkgs.vimPlugins; [
             nvim-lspconfig
             lualine-nvim
+            barbar-nvim
+            barbecue-nvim
+            nvim-navic
             gitsigns-nvim
             vim-sleuth
             vim-fugitive
@@ -262,6 +268,7 @@
             undotree
             indent-blankline-nvim
             vim-startuptime
+            aerial-nvim
           ];
         };
       };
@@ -335,7 +342,7 @@
           gitPlugins = true;
           customPlugins = true;
           markdown = true;
-          lint = true;
+          lint = false;
           format = true;
           neonixdev = true;
           debug = true;

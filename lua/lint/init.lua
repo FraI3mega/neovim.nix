@@ -6,6 +6,9 @@ require("lze").load({
     -- ft = "",
     -- keys = "",
     -- colorscheme = "",
+    load = function(name)
+      vim.cmd.packadd(name)
+    end,
     after = function(plugin)
       require("lint").linters_by_ft = {
         -- NOTE: download some linters in lspsAndRuntimeDeps
