@@ -271,9 +271,11 @@
             dial-nvim
             flash-nvim
             pkgs.neovimPlugins.auto-save
+            toggleterm-nvim
+            noice-nvim
           ];
           extra = with pkgs.vimPlugins; [
-            fidget-nvim
+            # fidget-nvim
             which-key-nvim
             comment-nvim
             undotree

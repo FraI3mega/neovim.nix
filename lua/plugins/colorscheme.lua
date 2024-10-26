@@ -12,7 +12,7 @@ if colorschemeName == "catppuccin-mocha" then
       notify = true,
       neogit = true,
       diffview = true,
-      fidget = true,
+      -- fidget = true,
     },
   })
 end

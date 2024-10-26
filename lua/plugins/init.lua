@@ -90,7 +90,7 @@ if nixCats("general.extra") then
 
 	require("persisted").setup({
 		use_git_branch = true, -- Include the git branch in the session file name?
-		autoload = true, -- Automatically load the session for the cwd on Neovim startup?
+		autoload = true,     -- Automatically load the session for the cwd on Neovim startup?
 	})
 
 	vim.opt.sessionoptions:append("globals")
@@ -107,6 +107,7 @@ require("lze").load({
 	{ import = "plugins.telescope" },
 	{ import = "plugins.treesitter" },
 	{ import = "plugins.completion" },
+	{ import = "plugins.noice" },
 	{ import = "plugins.lines" },
 	{ import = "plugins.language-specific" },
 	{ import = "plugins.neotest" },
@@ -153,6 +154,32 @@ require("lze").load({
 		before = function(plugin)
 			vim.g.mkdp_auto_close = 0
 		end,
+	},
+	{
+		"toggleterm.nvim",
+		cmd = "ToggleTerm",
+		after = function(plugin)
+			require("toggleterm").setup({})
+		end,
+		keys = {
+			{ "<leader>t",  desc = "[t]erminal" },
+			{ "<leader>tt", "<cmd>ToggleTerm<cr>", desc = "Toggle terminal" },
+			{
+				"<F8>",
+				"<cmd>ToggleTerm<cr>",
+				desc = "Toggle terminal",
+				mode = { "n", "t" },
+			},
+			{
+				"<F8>",
+				"<esc><cmd>ToggleTerm<cr>",
+				desc = "Toggle terminal",
+				mode = { "i" },
+			},
+			{ "<leader>tf", "<cmd>ToggleTerm direction=float<cr>",      desc = "Toggle floating terminal" },
+			{ "<leader>th", "<cmd>ToggleTerm direction=horizontal<cr>", desc = "Toggle horizontal terminal" },
+			{ "<leader>tv", "<cmd>ToggleTerm direction=vertical<cr>",   desc = "Toggle vertical terminal" },
+		},
 	},
 	{
 		"undotree",
@@ -244,14 +271,14 @@ require("lze").load({
 		-- lazy-load on keys. -- Mode is `n` by default.
 		keys = { "<C-a>", { "<C-x>", mode = "n" } },
 	},
-	{
-		"fidget.nvim",
-		event = "DeferredUIEnter",
-		-- keys = "",
-		after = function(plugin)
-			require("fidget").setup({})
-		end,
-	},
+	-- {
+	-- 	"fidget.nvim",
+	-- 	event = "DeferredUIEnter",
+	-- 	-- keys = "",
+	-- 	after = function(plugin)
+	-- 		require("fidget").setup({})
+	-- 	end,
+	-- },
 	{
 		"gitsigns.nvim",
 		event = "DeferredUIEnter",
@@ -327,9 +354,9 @@ require("lze").load({
 		"neogit",
 		event = "DeferredUIEnter",
 		keys = {
-			{ "<leader>gn", mode = "n", desc = "Neogit" },
-			{ "<leader>gnt", "<cmd>Neogit<cr>", mode = "n", desc = "Open neogit [t]ab page" },
-			{ "<leader>gnc", "<cmd>Neogit commit<cr>", mode = "n", desc = "Open neogit [c]ommit page" },
+			{ "<leader>gn",  mode = "n",               desc = "Neogit" },
+			{ "<leader>gnt", "<cmd>Neogit<cr>",        mode = "n",     desc = "Open neogit [t]ab page" },
+			{ "<leader>gnc", "<cmd>Neogit commit<cr>", mode = "n",     desc = "Open neogit [c]ommit page" },
 		},
 		after = function(plugin)
 			require("neogit").setup({
@@ -428,7 +455,7 @@ require("lze").load({
 			})
 		end,
 		keys = {
-			{ "<leader>x", desc = "Trouble" },
+			{ "<leader>x",  desc = "Trouble" },
 			{
 				"<leader>xX",
 				"<cmd>Trouble diagnostics toggle<cr>",
@@ -439,10 +466,11 @@ require("lze").load({
 				"<cmd>Trouble diagnostics toggle filter.buf=0<cr>",
 				desc = "Trouble Buffer Diagnostics",
 			},
-			{ "<leader>xt", "<cmd>Trouble todo<cr>", desc = "Trouble Todo" },
+			{ "<leader>xt", "<cmd>Trouble todo<cr>",                               desc = "Trouble Todo" },
 			{ "<leader>xT", "<cmd>Trouble todo filter={tag={TODO,FIX,FIXME}}<cr>", desc = "Trouble Todo/Fix/Fixme" },
 		},
 	},
+
 	{
 		"which-key.nvim",
 		-- cmd = { "" },
@@ -453,26 +481,26 @@ require("lze").load({
 		after = function(plugin)
 			require("which-key").setup({})
 			require("which-key").add({
-				{ "<leader>b", group = "[b]uffer" },
-				{ "<leader>b_", hidden = true },
-				{ "<leader>bs", group = "[s]ort" },
+				{ "<leader>b",   group = "[b]uffer" },
+				{ "<leader>b_",  hidden = true },
+				{ "<leader>bs",  group = "[s]ort" },
 				{ "<leader>bs_", hidden = true },
-				{ "<leader>c", group = "[c]ode" },
-				{ "<leader>c_", hidden = true },
-				{ "<leader>d", group = "[d]ocument" },
-				{ "<leader>d_", hidden = true },
-				{ "<leader>g", group = "[g]it" },
-				{ "<leader>g_", hidden = true },
-				{ "<leader>m", group = "[m]arkdown" },
-				{ "<leader>m_", hidden = true },
-				{ "<leader>r", group = "[r]ename" },
-				{ "<leader>r_", hidden = true },
-				{ "<leader>s", group = "[s]earch" },
-				{ "<leader>s_", hidden = true },
-				{ "<leader>t", group = "[t]oggles" },
-				{ "<leader>t_", hidden = true },
-				{ "<leader>w", group = "[w]orkspace" },
-				{ "<leader>w_", hidden = true },
+				{ "<leader>c",   group = "[c]ode" },
+				{ "<leader>c_",  hidden = true },
+				{ "<leader>d",   group = "[d]ocument" },
+				{ "<leader>d_",  hidden = true },
+				{ "<leader>g",   group = "[g]it" },
+				{ "<leader>g_",  hidden = true },
+				{ "<leader>m",   group = "[m]arkdown" },
+				{ "<leader>m_",  hidden = true },
+				{ "<leader>r",   group = "[r]ename" },
+				{ "<leader>r_",  hidden = true },
+				{ "<leader>s",   group = "[s]earch" },
+				{ "<leader>s_",  hidden = true },
+				{ "<leader>t",   group = "[t]oggles" },
+				{ "<leader>t_",  hidden = true },
+				{ "<leader>w",   group = "[w]orkspace" },
+				{ "<leader>w_",  hidden = true },
 				-- { "<leader>T",         group = "[T]ests" },
 				-- { "<leader>T_",        hidden = true },
 			})
