@@ -18,7 +18,7 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
-    nixCats.url = "github:BirdeeHub/nixCats-nvim?dir=nix";
+    nixCats.url = "github:BirdeeHub/nixCats-nvim";
 
     "plugins-auto-save" = {
       url = "github:okuuva/auto-save.nvim";
@@ -162,6 +162,7 @@
             vim-repeat
             plenary-nvim
             dressing-nvim
+            nvim-nio
           ];
           extra = [
             oil-nvim
@@ -183,7 +184,6 @@
       # use with packadd and an autocommand in config to achieve lazy loading
       optionalPlugins = {
         debug = with pkgs.vimPlugins; [
-          nvim-nio
           nvim-dap
           nvim-dap-ui
           nvim-dap-virtual-text
@@ -338,7 +338,7 @@
           lint = true;
           format = true;
           neonixdev = true;
-          debug = false;
+          debug = true;
           themer = true;
           colorscheme = "catppuccin-mocha";
           nixdExtras = {

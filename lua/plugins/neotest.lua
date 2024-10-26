@@ -17,6 +17,7 @@ return {
     end,
 
     keys = {
+      { prefix,           desc = "[T]est" },
       { prefix .. "r",    desc = "[r]un test" },
       { prefix .. "d",    desc = "[d]ebug test" },
       { prefix .. "f",    desc = "Run all test in [f]ile" },
@@ -26,6 +27,10 @@ return {
       { prefix .. "O",    desc = "output windows" },
       { "]T",             desc = "Next [T]est" },
       { "[T",             desc = "Previous [T]est" },
+      { watch,            desc = "[w]atch tests" },
+      { watch .. "t",     desc = "toggle watch [t]est" },
+      { watch .. "f",     desc = "toggle watch all tests in [f]ile" },
+      { watch .. "p",     desc = "toggle watch all tests in [p]roject" },
     },
 
     after = function(plugin)
