@@ -11,6 +11,8 @@ require("large_file").setup({
 	on_large_file_read_pre = function(ev) end,
 })
 
+require("better_escape").setup()
+
 if nixCats("general.extra") then
 	-- I didnt want to bother with lazy loading this.
 	-- I could put it in opt and put it in a spec anyway
@@ -88,7 +90,7 @@ if nixCats("general.extra") then
 
 	require("persisted").setup({
 		use_git_branch = true, -- Include the git branch in the session file name?
-		autoload = true,     -- Automatically load the session for the cwd on Neovim startup?
+		autoload = true, -- Automatically load the session for the cwd on Neovim startup?
 	})
 
 	vim.opt.sessionoptions:append("globals")
@@ -108,6 +110,7 @@ require("lze").load({
 	{ import = "plugins.lines" },
 	{ import = "plugins.language-specific" },
 	{ import = "plugins.neotest" },
+	{ import = "plugins.image" },
 	{
 		"lazydev.nvim",
 		cmd = { "LazyDev" },
@@ -324,9 +327,9 @@ require("lze").load({
 		"neogit",
 		event = "DeferredUIEnter",
 		keys = {
-			{ "<leader>gn",  mode = "n",               desc = "Neogit" },
-			{ "<leader>gnt", "<cmd>Neogit<cr>",        mode = "n",     desc = "Open neogit [t]ab page" },
-			{ "<leader>gnc", "<cmd>Neogit commit<cr>", mode = "n",     desc = "Open neogit [c]ommit page" },
+			{ "<leader>gn", mode = "n", desc = "Neogit" },
+			{ "<leader>gnt", "<cmd>Neogit<cr>", mode = "n", desc = "Open neogit [t]ab page" },
+			{ "<leader>gnc", "<cmd>Neogit commit<cr>", mode = "n", desc = "Open neogit [c]ommit page" },
 		},
 		after = function(plugin)
 			require("neogit").setup({
@@ -425,7 +428,7 @@ require("lze").load({
 			})
 		end,
 		keys = {
-			{ "<leader>x",  desc = "Trouble" },
+			{ "<leader>x", desc = "Trouble" },
 			{
 				"<leader>xX",
 				"<cmd>Trouble diagnostics toggle<cr>",
@@ -436,7 +439,7 @@ require("lze").load({
 				"<cmd>Trouble diagnostics toggle filter.buf=0<cr>",
 				desc = "Trouble Buffer Diagnostics",
 			},
-			{ "<leader>xt", "<cmd>Trouble todo<cr>",                               desc = "Trouble Todo" },
+			{ "<leader>xt", "<cmd>Trouble todo<cr>", desc = "Trouble Todo" },
 			{ "<leader>xT", "<cmd>Trouble todo filter={tag={TODO,FIX,FIXME}}<cr>", desc = "Trouble Todo/Fix/Fixme" },
 		},
 	},
@@ -450,26 +453,26 @@ require("lze").load({
 		after = function(plugin)
 			require("which-key").setup({})
 			require("which-key").add({
-				{ "<leader>b",   group = "[b]uffer" },
-				{ "<leader>b_",  hidden = true },
-				{ "<leader>bs",  group = "[s]ort" },
+				{ "<leader>b", group = "[b]uffer" },
+				{ "<leader>b_", hidden = true },
+				{ "<leader>bs", group = "[s]ort" },
 				{ "<leader>bs_", hidden = true },
-				{ "<leader>c",   group = "[c]ode" },
-				{ "<leader>c_",  hidden = true },
-				{ "<leader>d",   group = "[d]ocument" },
-				{ "<leader>d_",  hidden = true },
-				{ "<leader>g",   group = "[g]it" },
-				{ "<leader>g_",  hidden = true },
-				{ "<leader>m",   group = "[m]arkdown" },
-				{ "<leader>m_",  hidden = true },
-				{ "<leader>r",   group = "[r]ename" },
-				{ "<leader>r_",  hidden = true },
-				{ "<leader>s",   group = "[s]earch" },
-				{ "<leader>s_",  hidden = true },
-				{ "<leader>t",   group = "[t]oggles" },
-				{ "<leader>t_",  hidden = true },
-				{ "<leader>w",   group = "[w]orkspace" },
-				{ "<leader>w_",  hidden = true },
+				{ "<leader>c", group = "[c]ode" },
+				{ "<leader>c_", hidden = true },
+				{ "<leader>d", group = "[d]ocument" },
+				{ "<leader>d_", hidden = true },
+				{ "<leader>g", group = "[g]it" },
+				{ "<leader>g_", hidden = true },
+				{ "<leader>m", group = "[m]arkdown" },
+				{ "<leader>m_", hidden = true },
+				{ "<leader>r", group = "[r]ename" },
+				{ "<leader>r_", hidden = true },
+				{ "<leader>s", group = "[s]earch" },
+				{ "<leader>s_", hidden = true },
+				{ "<leader>t", group = "[t]oggles" },
+				{ "<leader>t_", hidden = true },
+				{ "<leader>w", group = "[w]orkspace" },
+				{ "<leader>w_", hidden = true },
 				-- { "<leader>T",         group = "[T]ests" },
 				-- { "<leader>T_",        hidden = true },
 			})

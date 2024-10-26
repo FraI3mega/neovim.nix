@@ -125,6 +125,7 @@
           ripgrep
           fd
           ruff-lsp
+          imagemagick
         ];
         lint = with pkgs; [
           statix
@@ -170,6 +171,7 @@
             nvim-notify
             nvim-autopairs
             pkgs.neovimPlugins.large_file
+            better-escape-nvim
           ];
           extra = [
             oil-nvim
@@ -281,6 +283,8 @@
             trouble-nvim
             todo-comments-nvim
             nvim-bqf
+            image-nvim
+            img-clip-nvim
           ];
         };
       };
@@ -323,7 +327,7 @@
       };
       # populates $LUA_PATH and $LUA_CPATH
       extraLuaPackages = {
-        test = [(_: [])];
+        general = [(lp: with lp; [magick])];
       };
     };
 
