@@ -440,7 +440,7 @@
           ;
       };
       # and the same for home manager
-      homeModule = utils.mkHomeModules {
+      homeModules.default = utils.mkHomeModules {
         inherit
           defaultPackageName
           dependencyOverlays
