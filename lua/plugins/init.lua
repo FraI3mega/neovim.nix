@@ -13,6 +13,7 @@ require("large_file").setup({
 
 require("better_escape").setup()
 
+require("plugins.completion")
 if nixCats("general.extra") then
 	-- I didnt want to bother with lazy loading this.
 	-- I could put it in opt and put it in a spec anyway
@@ -105,8 +106,6 @@ end
 
 require("lze").load({
 	{ import = "plugins.telescope" },
-	{ import = "plugins.treesitter" },
-	{ import = "plugins.completion" },
 	{ import = "plugins.noice" },
 	{ import = "plugins.lines" },
 	{ import = "plugins.language-specific" },
@@ -481,26 +480,25 @@ require("lze").load({
 		after = function(plugin)
 			require("which-key").setup({})
 			require("which-key").add({
-				{ "<leader>b",   group = "[b]uffer" },
-				{ "<leader>b_",  hidden = true },
-				{ "<leader>bs",  group = "[s]ort" },
-				{ "<leader>bs_", hidden = true },
-				{ "<leader>c",   group = "[c]ode" },
-				{ "<leader>c_",  hidden = true },
-				{ "<leader>d",   group = "[d]ocument" },
-				{ "<leader>d_",  hidden = true },
-				{ "<leader>g",   group = "[g]it" },
-				{ "<leader>g_",  hidden = true },
-				{ "<leader>m",   group = "[m]arkdown" },
-				{ "<leader>m_",  hidden = true },
-				{ "<leader>r",   group = "[r]ename" },
-				{ "<leader>r_",  hidden = true },
-				{ "<leader>s",   group = "[s]earch" },
-				{ "<leader>s_",  hidden = true },
-				{ "<leader>t",   group = "[t]oggles" },
-				{ "<leader>t_",  hidden = true },
-				{ "<leader>w",   group = "[w]orkspace" },
-				{ "<leader>w_",  hidden = true },
+				{ "<leader><leader>", group = "buffer" },
+				{ "<leader>bs",       group = "[s]ort" },
+				{ "<leader>bs_",      hidden = true },
+				{ "<leader>c",        group = "[c]ode" },
+				{ "<leader>c_",       hidden = true },
+				{ "<leader>d",        group = "[d]ocument" },
+				{ "<leader>d_",       hidden = true },
+				{ "<leader>g",        group = "[g]it" },
+				{ "<leader>g_",       hidden = true },
+				{ "<leader>m",        group = "[m]arkdown" },
+				{ "<leader>m_",       hidden = true },
+				{ "<leader>r",        group = "[r]ename" },
+				{ "<leader>r_",       hidden = true },
+				{ "<leader>s",        group = "[s]earch" },
+				{ "<leader>s_",       hidden = true },
+				{ "<leader>t",        group = "[t]oggles" },
+				{ "<leader>t_",       hidden = true },
+				{ "<leader>w",        group = "[w]orkspace" },
+				{ "<leader>w_",       hidden = true },
 				-- { "<leader>T",         group = "[T]ests" },
 				-- { "<leader>T_",        hidden = true },
 			})

@@ -49,7 +49,7 @@ return {
 		event = "DeferredUIEnter",
 		after = function(plugin)
 			local map = vim.keymap.set
-			local buffer = "<leader>b"
+			local buffer = "<leader><leader>"
 			map("n", "[b", "<Cmd>BufferPrevious<CR>", { desc = "Switch to previous buffer" })
 			map("n", "]b", "<Cmd>BufferNext<CR>", { desc = "Switch to next buffer" })
 			map("n", buffer .. "P", "<Cmd>BufferPin<CR>", { desc = "[P]in current buffer" })

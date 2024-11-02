@@ -29,6 +29,8 @@
       url = "github:mireq/large_file";
       flake = false;
     };
+
+    blink-cmp.url = "github:saghen/blink.cmp";
     # neovim-nightly-overlay = {
     #   url = "github:nix-community/neovim-nightly-overlay";
     # };
@@ -49,6 +51,7 @@
     self,
     nixpkgs,
     nixCats,
+    blink-cmp,
     ...
   } @ inputs: let
     inherit (nixCats) utils;
@@ -178,6 +181,11 @@
             nvim-web-devicons
             smart-splits-nvim
             persisted-nvim
+            otter-nvim
+          ];
+          blink = with pkgs.vimPlugins; [
+            blink-cmp.outputs.packages.${pkgs.system}.blink-cmp
+            friendly-snippets
           ];
 
           themer = with pkgs.vimPlugins; (builtins.getAttr categories.colorscheme {
@@ -240,10 +248,6 @@
           #   cmp-cmdline-history
           #   lspkind-nvim
           # ];
-          blink = with pkgs.vimPlugins; [
-            blink-cmp
-            friendly-snippets
-          ];
           treesitter = with pkgs.vimPlugins; [
             nvim-treesitter-textobjects
             nvim-treesitter.withAllGrammars
@@ -292,7 +296,6 @@
             nvim-bqf
             image-nvim
             img-clip-nvim
-            otter-nvim
           ];
         };
       };

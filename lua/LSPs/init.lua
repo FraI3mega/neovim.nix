@@ -113,7 +113,8 @@ require("lze").load({
     after = function(plugin)
       for server_name, cfg in pairs(servers) do
         require("lspconfig")[server_name].setup({
-          capabilities = require("LSPs.caps-on_attach").get_capabilities(server_name),
+          capabilities = require("blink.cmp").get_lsp_capabilities(cfg.capabilities),
+          -- capabilities = require("LSPs.caps-on_attach").get_capabilities(server_name),
           -- this line is interchangeable with the above LspAttach autocommand
           -- on_attach = require('LSPs.caps-on_attach').on_attach,
           settings = cfg,
