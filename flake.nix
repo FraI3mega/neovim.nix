@@ -224,20 +224,25 @@
         gitPlugins = with pkgs.neovimPlugins; [
         ];
         general = {
-          cmp = with pkgs.vimPlugins; [
-            # cmp stuff
-            nvim-cmp
-            luasnip
+          # cmp = with pkgs.vimPlugins; [
+          #   # cmp stuff
+          #   # nvim-cmp
+          #
+          #   luasnip
+          #   friendly-snippets
+          #   cmp_luasnip
+          #   cmp-buffer
+          #   cmp-path
+          #   cmp-nvim-lua
+          #   cmp-nvim-lsp
+          #   cmp-cmdline
+          #   cmp-nvim-lsp-signature-help
+          #   cmp-cmdline-history
+          #   lspkind-nvim
+          # ];
+          blink = with pkgs.vimPlugins; [
+            blink-cmp
             friendly-snippets
-            cmp_luasnip
-            cmp-buffer
-            cmp-path
-            cmp-nvim-lua
-            cmp-nvim-lsp
-            cmp-cmdline
-            cmp-nvim-lsp-signature-help
-            cmp-cmdline-history
-            lspkind-nvim
           ];
           treesitter = with pkgs.vimPlugins; [
             nvim-treesitter-textobjects
@@ -287,11 +292,11 @@
             nvim-bqf
             image-nvim
             img-clip-nvim
+            otter-nvim
           ];
         };
       };
 
-      # shared libraries to be added to LD_LIBRARY_PATH
       # variable available to nvim runtime
       sharedLibraries = {
         general = with pkgs; [

@@ -260,7 +260,7 @@ require("lze").load({
 		"aerial.nvim",
 		cmd = { "AerialToggle", "AerialNavToggle" },
 		keys = {
-			{ "<leader>wS", "<cmd>AerialToggle<cr>", mode = "n", desc = "[S]ymbols outline" },
+			{ "<leader>dS", "<cmd>AerialToggle<cr>", mode = "n", desc = "[S]ymbols outline" },
 		},
 		after = function(plugin)
 			require("aerial").setup({ show_guides = true })

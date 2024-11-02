@@ -51,6 +51,16 @@ if nixCats("neonixdev") then
             .. [[".options]],
       },
       -- (builtins.getFlake "<path_to_system_flake>").homeConfigurations."<name>".options
+    }
+  end
+  if not nixCats("nixdExtras.homeCFGname") then
+    servers.nixd.nixd.options = {
+      ["home-manager"] = {
+        expr = '(builtins.getFlake ("git+file://" + toString ./.)).nixosConfigurations.whitey.options',
+      },
+    }
+  else
+    servers.nixd.nixd.options = {
       ["home-manager"] = {
         expr = [[(builtins.getFlake "]]
             .. nixCats("nixdExtras.flake-path")
@@ -115,3 +125,10 @@ require("lze").load({
     end,
   },
 })
+
+local signs = { Error = "󰅚 ", Warn = "󰀪 ", Hint = "󰌶 ", Info = " " }
+for type, icon in pairs(signs) do
+  local hl = "DiagnosticSign" .. type
+  vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
+end
+require("LSPs.otter")

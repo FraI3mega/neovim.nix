@@ -2,7 +2,6 @@ local colorschemeName = nixCats("colorscheme")
 return {
 	{
 		"lualine.nvim",
-		enabled = require("nixCatsUtils").enableForCategory("general.always"),
 		-- cmd = { "" },
 		event = "DeferredUIEnter",
 		-- ft = "",
@@ -11,10 +10,12 @@ return {
 		after = function(plugin)
 			require("lualine").setup({
 				options = {
-					theme = colorschemeName,
+					theme = "catppuccin",
 					component_separators = { left = "", right = "" },
 					section_separators = { left = "", right = "" },
 				},
+				extensions = { "nvim-dap-ui", "oil", "quickfix", "trouble", "aerial", "toggleterm" },
+				globalstatus = true,
 				sections = {
 					lualine_c = {
 						{
@@ -22,6 +23,11 @@ return {
 							path = 1,
 							status = true,
 						},
+					},
+
+					lualine_x = {
+						"searchcount",
+						"filetype",
 					},
 				},
 				inactive_sections = {
@@ -32,6 +38,7 @@ return {
 							status = true,
 						},
 					},
+					lualine_c = { "filesize" },
 					lualine_x = { "filetype" },
 				},
 			})
