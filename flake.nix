@@ -19,7 +19,7 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
     nixCats.url = "github:BirdeeHub/nixCats-nvim";
-
+    awesome-neovim-plugins.url = "github:m15a/flake-awesome-neovim-plugins";
     "plugins-auto-save" = {
       url = "github:okuuva/auto-save.nvim";
       flake = false;

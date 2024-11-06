@@ -15,7 +15,7 @@ return {
 					section_separators = { left = "", right = "" },
 				},
 				extensions = { "nvim-dap-ui", "oil", "quickfix", "trouble", "aerial", "toggleterm" },
-				globalstatus = true,
+				globalstatus = vim.o.laststatus == 3,
 				sections = {
 					lualine_c = {
 						{

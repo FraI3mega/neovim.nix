@@ -67,6 +67,9 @@ vim.wo.relativenumber = true
 vim.o.updatetime = 250
 vim.o.timeoutlen = 300
 
+--Single status line
+vim.o.laststatus = 3
+
 -- Set completeopt to have a better completion experience
 vim.o.completeopt = "menu,preview,noselect"
 
