@@ -15,6 +15,13 @@ require("better_escape").setup()
 require("guess-indent").setup({})
 
 require("plugins.completion")
+
+require("sort").setup({})
+-- mini plugins
+require("mini.ai").setup({})
+require("mini.align").setup({})
+require("mini.operators").setup({})
+require("mini.extra").setup({})
 if nixCats("general.extra") then
     -- I didnt want to bother with lazy loading this.
     -- I could put it in opt and put it in a spec anyway
@@ -130,6 +137,15 @@ require("lze").load({
         event = "BufRead",
         after = function(plugin)
             require("hlsearch").setup()
+        end,
+    },
+    {
+        "neogen",
+        cmd = "Neogen",
+        after = function()
+            require("neogen").setup({
+                snippet_engine = "nvim",
+            })
         end,
     },
     {
@@ -363,6 +379,7 @@ require("lze").load({
         cmd = "ASToggle",
         after = function(plugin)
             require("auto-save").setup({
+                enabled = vim.env.KITTY_SCROLLBACK_NVIM ~= "true",
                 condition = function(buf)
                     local fn = vim.fn
                     local utils = require("auto-save.utils.data")
@@ -376,6 +393,53 @@ require("lze").load({
             })
         end,
     },
+    {
+        "nvim-tetris",
+        cmd = "Tetris",
+    },
+    {
+        "cellular-automaton.nvim",
+        cmd = "CellularAutomaton",
+    },
+    {
+        "playtime-nvim",
+        cmd = "Playtime",
+    },
+    {
+        "codesnap.nvim",
+        keys = {
+            { "<leader>Cc", ":'<,'>CodeSnap<CR>",      mode = "v", desc = "CodeSnap (clipboard)" },
+            { "<leader>Cs", ":'<,'>CodeSnapSave<CR>",  mode = "v", desc = "CodeSnap (save)" },
+            { "<leader>Ca", ":'<,'>CodeSnapASCII<CR>", mode = "v", desc = "CodeSnap (ASCII)" },
+            {
+                "<leader>Ch",
+                ":'<,'>CodeSnapHighlight<CR>",
+                mode = "v",
+                desc = "CodeSnap with highlight (clipboard)",
+            },
+            { "CH", ":'<,'>CodeSnapSaveHighlight<CR>", mode = "v", desc = "CodeSnap with highlight (save)" },
+        },
+        cmd = { "CodeSnap", "CodeSnapSave", "CodeSnapHighlight", "CodeSnapSaveHighlight", "CodeSnapASCII" },
+        after = function(plugin)
+            require("codesnap").setup({
+                mac_window_bar = true,
+                title = "",
+                code_font_family = "CaskaydiaCove Nerd Font",
+                watermark_font_family = "Pacifico",
+                watermark = "",
+                bg_theme = "dusk",
+                breadcrumbs_separator = "/",
+                has_breadcrumbs = true,
+                has_line_number = true,
+                show_workspace = false,
+                min_width = 0,
+                bg_x_padding = 122,
+                bg_y_padding = 82,
+                save_path = os.getenv("XDG_PICTURES_DIR") or (os.getenv("HOME") .. "/Pictures"),
+            })
+        end,
+    },
+
     {
         "aerial.nvim",
         cmd = { "AerialToggle", "AerialNavToggle" },

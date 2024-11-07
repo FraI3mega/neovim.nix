@@ -179,6 +179,9 @@
             better-escape-nvim
             promise-async
             guess-indent-nvim
+            nvim-unception
+            mini-nvim
+            sort-nvim
           ];
           extra = [
             oil-nvim
@@ -229,6 +232,7 @@
         languages = {
           general = with pkgs.vimPlugins; [
             neotest
+            neogen
           ];
           rust = with pkgs.vimPlugins; [
             crates-nvim
@@ -307,6 +311,12 @@
             twilight-nvim
             zen-mode-nvim
             grug-far-nvim
+            codesnap-nvim
+          ];
+          fun = with pkgs.vimPlugins; [
+            cellular-automaton-nvim
+            pkgs.awesomeNeovimPlugins.nvim-tetris
+            pkgs.awesomeNeovimPlugins.playtime-nvim
           ];
           awesome = with pkgs.awesomeNeovimPlugins; [
             hlsearch-nvim

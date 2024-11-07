@@ -62,6 +62,9 @@ return {
 			map("n", buffer .. "sw", "<Cmd>BufferOrderByWindowNumber<CR>", { desc = "Sort by [w]indow number" })
 
 			map("n", buffer .. "c", "<Cmd>BufferClose<CR>", { desc = "[c]lose buffer" }) -- close
+			require('barbar').setup({
+  auto_hide = vim.env.KITTY_SCROLLBACK_NVIM == 'true' and 1 or -1,
+})
 		end,
 	},
 	{
