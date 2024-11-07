@@ -398,6 +398,14 @@ require("lze").load({
         end,
     },
     {
+        "kitty-scrollback-nvim",
+        event = { "User KittyScrollbackLaunch" },
+        cmd = { "KittyScrollbackGenerateKittens", "KittyScrollbackCheckHealth" },
+        after = function()
+            require("kitty-scrollback").setup()
+        end,
+    },
+    {
         "twilight.nvim",
         cmd = { "Twilight" },
         dep_of = "zen-mode.nvim",

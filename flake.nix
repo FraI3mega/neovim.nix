@@ -310,6 +310,7 @@
           ];
           awesome = with pkgs.awesomeNeovimPlugins; [
             hlsearch-nvim
+            kitty-scrollback-nvim
           ];
         };
       };
