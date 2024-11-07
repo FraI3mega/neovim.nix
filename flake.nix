@@ -131,6 +131,7 @@
           ruff-lsp
           imagemagick
           fish
+          git-absorb
         ];
         lint = with pkgs; [
           statix
@@ -385,6 +386,7 @@
         categories = {
           languages = true;
           general = true;
+
           gitPlugins = true;
           customPlugins = true;
           markdown = true;
