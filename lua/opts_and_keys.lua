@@ -27,7 +27,27 @@ vim.opt.listchars = { tab = "» ", trail = "·", nbsp = "␣" }
 
 -- Set highlight on search
 vim.opt.hlsearch = true
-vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
+
+-- Folds
+vim.o.fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
+vim.o.foldcolumn = "1"
+
+local fcs = vim.opt.fillchars:get()
+
+-- Stolen from Akinsho
+local function get_fold(lnum)
+  if vim.fn.foldlevel(lnum) <= vim.fn.foldlevel(lnum - 1) then
+    return " "
+  end
+  local fold_sym = vim.fn.foldclosed(lnum) == -1 and fcs.foldopen or fcs.foldclose
+  return fold_sym
+end
+
+_G.get_statuscol = function()
+  return "%s%l " .. get_fold(vim.v.lnum) .. " "
+end
+
+vim.o.statuscolumn = "%!v:lua.get_statuscol()"
 
 -- Minimal number of screen lines to keep above and below the cursor.
 vim.opt.scrolloff = 10

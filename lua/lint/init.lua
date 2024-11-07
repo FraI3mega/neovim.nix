@@ -17,6 +17,7 @@ require("lze").load({
         -- javascript = { 'eslint' },
         -- typescript = { 'eslint' },
         nix = { "statix" },
+        fish = { "fish" },
       }
 
       vim.api.nvim_create_autocmd({ "BufWritePost" }, {

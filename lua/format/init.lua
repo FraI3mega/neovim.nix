@@ -6,7 +6,7 @@ require("lze").load({
     -- event = "",
     -- ft = "",
     keys = {
-      { "<leader>F", desc = "[F]ormat File" },
+      { "<leader>cf", desc = "[c]ode [f]ormat" },
     },
     -- colorscheme = "",
     after = function(plugin)
@@ -17,6 +17,7 @@ require("lze").load({
           -- NOTE: download some formatters in lspsAndRuntimeDeps
           -- and configure them here
           lua = { "stylua" },
+          fish = {"fish_indent"},
           -- go = { "gofmt", "golint" },
           -- templ = { "templ" },
           -- Conform will run multiple formatters sequentially

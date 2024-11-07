@@ -95,6 +95,7 @@
               # use `pkgs.neovimPlugins`, which is a set of our plugins.
               (utils.standardPluginOverlay inputs)
               # add any other flake overlays here.
+              inputs.awesome-neovim-plugins.overlays.default
             ];
         in {
           inherit dependencyOverlays;
@@ -129,6 +130,7 @@
           fd
           ruff-lsp
           imagemagick
+          fish
         ];
         lint = with pkgs; [
           statix
@@ -175,6 +177,8 @@
             nvim-autopairs
             pkgs.neovimPlugins.large_file
             better-escape-nvim
+            promise-async
+            guess-indent-nvim
           ];
           extra = [
             oil-nvim
@@ -188,6 +192,8 @@
             friendly-snippets
           ];
 
+          awesome = with pkgs.awesomeNeovimPlugins; [
+          ];
           themer = with pkgs.vimPlugins; (builtins.getAttr categories.colorscheme {
             # Theme switcher without creating a new category
             "onedark" = onedark-nvim;
@@ -282,6 +288,7 @@
             pkgs.neovimPlugins.auto-save
             toggleterm-nvim
             noice-nvim
+            nvim-ufo
           ];
           extra = with pkgs.vimPlugins; [
             # fidget-nvim
@@ -296,6 +303,13 @@
             nvim-bqf
             image-nvim
             img-clip-nvim
+            cord-nvim
+            twilight-nvim
+            zen-mode-nvim
+            grug-far-nvim
+          ];
+          awesome = with pkgs.awesomeNeovimPlugins; [
+            hlsearch-nvim
           ];
         };
       };
@@ -311,18 +325,12 @@
       # this section is for environmentVariables that should be available
       # at RUN TIME for plugins. Will be available to path within neovim terminal
       environmentVariables = {
-        test = {
-          CATTESTVAR = "It worked!";
-        };
       };
 
       # If you know what these are, you can provide custom ones by category here.
       # If you dont, check this link out:
       # https://github.com/NixOS/nixpkgs/blob/master/pkgs/build-support/setup-hooks/make-wrapper.sh
       extraWrapperArgs = {
-        test = [
-          ''--set CATTESTVAR2 "It worked again!"''
-        ];
       };
 
       # lists of the functions you would have passed to
