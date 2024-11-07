@@ -145,6 +145,7 @@
           stylua
           isort
           alejandra
+          taplo
         ];
         neonixdev = {
           inherit

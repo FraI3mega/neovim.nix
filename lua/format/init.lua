@@ -22,18 +22,19 @@ require("lze").load({
           -- templ = { "templ" },
           -- Conform will run multiple formatters sequentially
           python = { "isort", "black" },
+          toml = {"taplo"}
           -- Use a sub-list to run only the first available formatter
           -- javascript = { { "prettierd", "prettier" } },
         },
       })
 
-      vim.keymap.set({ "n", "v" }, "<leader>F", function()
+      vim.keymap.set({ "n", "v" }, "<leader>cf", function()
         conform.format({
           lsp_fallback = true,
           async = false,
           timeout_ms = 1000,
         })
-      end, { desc = "[F]ormat File" })
+      end, { desc = "[c]ode [f]ormat" })
     end,
   },
 })

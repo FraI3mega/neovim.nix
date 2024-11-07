@@ -10,7 +10,6 @@ require("blink-cmp").setup({
   trigger = { signature_help = { enabled = true } },
   windows = {
     documentation = { auto_show = true },
-    ghost_text = { enabled = true },
     autocomplete = { draw = "reversed" },
   },
   fuzzy = { prebuilt_binaries = { download = false } },
