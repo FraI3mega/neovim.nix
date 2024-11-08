@@ -3,7 +3,7 @@ if nixCats("neonixdev") then
   servers.lua_ls = {
     Lua = {
       formatters = {
-        ignoreComments = true,
+        enabled = false,
       },
       signatureHelp = { enabled = true },
       diagnostics = {
@@ -36,19 +36,13 @@ if nixCats("neonixdev") then
   -- that way it will ALWAYS work, regardless
   -- of where your config actually was.
   -- otherwise flake-path could be an absolute path to your system flake, or nil or false
-  if
-      nixCats("nixdExtras.flake-path")
-      and nixCats("nixdExtras.systemCFGname")
-      and nixCats("nixdExtras.homeCFGname")
-  then
+  if nixCats("nixdExtras.flake-path") and nixCats("nixdExtras.systemCFGname") and nixCats("nixdExtras.homeCFGname") then
     servers.nixd.nixd.options = {
       -- (builtins.getFlake "<path_to_system_flake>").nixosConfigurations."<name>".options
       nixos = {
-        expr = [[(builtins.getFlake "]]
-            .. nixCats("nixdExtras.flake-path")
-            .. [[").nixosConfigurations."]]
-            .. nixCats("nixdExtras.systemCFGname")
-            .. [[".options]],
+        expr = [[(builtins.getFlake "]] .. nixCats("nixdExtras.flake-path") .. [[").nixosConfigurations."]] .. nixCats(
+          "nixdExtras.systemCFGname"
+        ) .. [[".options]],
       },
       -- (builtins.getFlake "<path_to_system_flake>").homeConfigurations."<name>".options
     }
@@ -62,11 +56,9 @@ if nixCats("neonixdev") then
   else
     servers.nixd.nixd.options = {
       ["home-manager"] = {
-        expr = [[(builtins.getFlake "]]
-            .. nixCats("nixdExtras.flake-path")
-            .. [[").homeConfigurations."]]
-            .. nixCats("nixdExtras.homeCFGname")
-            .. [[".options]],
+        expr = [[(builtins.getFlake "]] .. nixCats("nixdExtras.flake-path") .. [[").homeConfigurations."]] .. nixCats(
+          "nixdExtras.homeCFGname"
+        ) .. [[".options]],
       },
     }
   end
@@ -113,13 +105,9 @@ require("lze").load({
     after = function(plugin)
       for server_name, cfg in pairs(servers) do
         require("lspconfig")[server_name].setup({
-          capabilities = vim.tbl_extend(
-            "keep",
-            require("blink.cmp").get_lsp_capabilities(cfg.capabilities),
-            {
-              textDocument = { foldingRange = { dynamicRegistration = false, lineFoldingOnly = true } },
-            }
-          ),
+          capabilities = vim.tbl_extend("keep", require("blink.cmp").get_lsp_capabilities(cfg.capabilities), {
+            textDocument = { foldingRange = { dynamicRegistration = false, lineFoldingOnly = true } },
+          }),
           -- capabilities = require("LSPs.caps-on_attach").get_capabilities(server_name),
           -- this line is interchangeable with the above LspAttach autocommand
           -- on_attach = require('LSPs.caps-on_attach').on_attach,

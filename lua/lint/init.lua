@@ -6,9 +6,7 @@ require("lze").load({
     -- ft = "",
     -- keys = "",
     -- colorscheme = "",
-    load = function(name)
-      vim.cmd.packadd(name)
-    end,
+    load = function(name) vim.cmd.packadd(name) end,
     after = function(plugin)
       require("lint").linters_by_ft = {
         -- NOTE: download some linters in lspsAndRuntimeDeps
@@ -21,9 +19,7 @@ require("lze").load({
       }
 
       vim.api.nvim_create_autocmd({ "BufWritePost" }, {
-        callback = function()
-          require("lint").try_lint()
-        end,
+        callback = function() require("lint").try_lint() end,
       })
     end,
   },

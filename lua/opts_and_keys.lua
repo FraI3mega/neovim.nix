@@ -32,23 +32,6 @@ vim.opt.hlsearch = true
 vim.o.fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
 vim.o.foldcolumn = "1"
 
-local fcs = vim.opt.fillchars:get()
-
--- Stolen from Akinsho
-local function get_fold(lnum)
-  if vim.fn.foldlevel(lnum) <= vim.fn.foldlevel(lnum - 1) then
-    return " "
-  end
-  local fold_sym = vim.fn.foldclosed(lnum) == -1 and fcs.foldopen or fcs.foldclose
-  return fold_sym
-end
-
-_G.get_statuscol = function()
-  return "%s%l " .. get_fold(vim.v.lnum) .. " "
-end
-
-vim.o.statuscolumn = "%!v:lua.get_statuscol()"
-
 -- Minimal number of screen lines to keep above and below the cursor.
 vim.opt.scrolloff = 10
 
@@ -68,7 +51,6 @@ vim.o.autoindent = true
 vim.o.tabstop = 4
 -- vim.o.softtabstop = 4
 -- vim.o.shiftwidth = 4
-
 -- stops line wrapping from being confusing
 vim.o.breakindent = true
 
@@ -100,9 +82,7 @@ vim.o.termguicolors = true
 -- See :help formatoptions
 vim.api.nvim_create_autocmd("FileType", {
   desc = "remove formatoptions",
-  callback = function()
-    vim.opt.formatoptions:remove({ "c", "r", "o" })
-  end,
+  callback = function() vim.opt.formatoptions:remove({ "c", "r", "o" }) end,
 })
 
 -- Highlight when yanking (copying) text
@@ -111,9 +91,7 @@ vim.api.nvim_create_autocmd("FileType", {
 vim.api.nvim_create_autocmd("TextYankPost", {
   desc = "Highlight when yanking (copying) text",
   group = vim.api.nvim_create_augroup("kickstart-highlight-yank", { clear = true }),
-  callback = function()
-    vim.highlight.on_yank()
-  end,
+  callback = function() vim.highlight.on_yank() end,
 })
 
 vim.g.netrw_liststyle = 0
@@ -155,7 +133,7 @@ vim.keymap.set(
   '"+yy',
   { noremap = true, silent = true, desc = "Yank line to clipboard" }
 )
-vim.keymap.set({ "n", "v", "x" }, "<C-a>", "gg0vG$", { noremap = true, silent = true, desc = "Select all" })
+vim.keymap.set({ "n", "v", "x" }, "<leader><C-a>", "gg0vG$", { noremap = true, silent = true, desc = "Select all" })
 vim.keymap.set({ "n", "v", "x" }, "<leader>p", '"+p', { noremap = true, silent = true, desc = "Paste from clipboard" })
 vim.keymap.set(
   "i",

@@ -30,6 +30,11 @@
       flake = false;
     };
 
+    "plugins-heirline-components" = {
+      url = "github:Zeioth/heirline-components.nvim";
+      flake = false;
+    };
+
     blink-cmp.url = "github:saghen/blink.cmp";
     # neovim-nightly-overlay = {
     #   url = "github:nix-community/neovim-nightly-overlay";
@@ -183,6 +188,7 @@
             guess-indent-nvim
             nvim-unception
             mini-nvim
+            dial-nvim
             sort-nvim
           ];
           extra = [
@@ -285,11 +291,11 @@
             gitsigns-nvim
             neogit
             diffview-nvim
-            vim-sleuth
             vim-fugitive
+            heirline-nvim
+            pkgs.neovimPlugins.heirline-components
             vim-rhubarb
             nvim-surround
-            dial-nvim
             flash-nvim
             pkgs.neovimPlugins.auto-save
             toggleterm-nvim

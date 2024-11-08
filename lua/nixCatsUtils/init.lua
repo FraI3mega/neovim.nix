@@ -22,10 +22,10 @@ function M.setup(v)
       nixCats_default_value = true
     end
     -- if not in nix, just make it return a boolean
-    require('_G').nixCats = function(_) return nixCats_default_value end
+    require("_G").nixCats = function(_) return nixCats_default_value end
     -- and define some stuff for the nixCats plugin
     -- to prevent indexing errors and provide some values
-    package.preload['nixCats'] = function ()
+    package.preload["nixCats"] = function()
       return {
         cats = {},
         pawsible = {
@@ -36,12 +36,12 @@ function M.setup(v)
           },
         },
         settings = {
-          nixCats_config_location = vim.fn.stdpath('config'),
+          nixCats_config_location = vim.fn.stdpath("config"),
           configDirName = os.getenv("NVIM_APPNAME") or "nvim",
           wrapRc = false,
         },
-        configDir = vim.fn.stdpath('config'),
-        packageBinPath = os.getenv('NVIM_WRAPPER_PATH_NIX') or vim.v.progpath
+        configDir = vim.fn.stdpath("config"),
+        packageBinPath = os.getenv("NVIM_WRAPPER_PATH_NIX") or vim.v.progpath,
       }
     end
   end
@@ -92,6 +92,6 @@ end
 ---Useful for things such as vim-startuptime which must reference the wrapper's actual path
 ---If not using nix, this will simply return vim.v.progpath
 ---@type string
-M.packageBinPath = os.getenv('NVIM_WRAPPER_PATH_NIX') or vim.v.progpath
+M.packageBinPath = os.getenv("NVIM_WRAPPER_PATH_NIX") or vim.v.progpath
 
 return M

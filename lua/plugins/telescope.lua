@@ -30,7 +30,7 @@ return {
     -- ft = "",
     keys = {
       { "<leader>fp", mode = { "n" }, desc = "[F]ind git [P]roject root" },
-      { "<leader>/",  mode = { "n" }, desc = "[/] Fuzzily search in current buffer" },
+      { "<leader>/", mode = { "n" }, desc = "[/] Fuzzily search in current buffer" },
       { "<leader>fb", mode = { "n" }, desc = " [F]ind existing [b]uffers" },
       { "<leader>f.", mode = { "n" }, desc = '[F]ind Recent Files ("." for repeat)' },
       { "<leader>fr", mode = { "n" }, desc = "[F]ind [R]esume" },
@@ -95,12 +95,17 @@ return {
 
       -- Also possible to pass additional configuration options.
       --  See `:help telescope.builtin.live_grep()` for information about particular keys
-      vim.keymap.set("n", "<leader>s/", function()
-        builtin.live_grep({
-          grep_open_files = true,
-          prompt_title = "Live Grep in Open Files",
-        })
-      end, { desc = "[S]earch [/] in Open Files" })
+      vim.keymap.set(
+        "n",
+        "<leader>s/",
+        function()
+          builtin.live_grep({
+            grep_open_files = true,
+            prompt_title = "Live Grep in Open Files",
+          })
+        end,
+        { desc = "[S]earch [/] in Open Files" }
+      )
 
       -- Telescope live_grep in git root
       -- Function to find the git root directory based on the current buffer's path
@@ -119,7 +124,7 @@ return {
 
         -- Find the Git root directory from the current file's path
         local git_root =
-            vim.fn.systemlist("git -C " .. vim.fn.escape(current_dir, " ") .. " rev-parse --show-toplevel")[1]
+          vim.fn.systemlist("git -C " .. vim.fn.escape(current_dir, " ") .. " rev-parse --show-toplevel")[1]
         if vim.v.shell_error ~= 0 then
           print("Not a git repository. Searching on current working directory")
           return cwd
@@ -130,11 +135,9 @@ return {
       -- Custom live_grep function to search in git root
       local function live_grep_git_root()
         local git_root = find_git_root()
-        if git_root then
-          require("telescope.builtin").live_grep({
-            search_dirs = { git_root },
-          })
-        end
+        if git_root then require("telescope.builtin").live_grep({
+          search_dirs = { git_root },
+        }) end
       end
 
       vim.api.nvim_create_user_command("LiveGrepGitRoot", live_grep_git_root, {})
