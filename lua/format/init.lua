@@ -1,9 +1,8 @@
 require("lze").load({
   {
     "conform.nvim",
-    enabled = require("nixCatsUtils").enableForCategory("format"),
     -- cmd = { "" },
-    -- event = "",
+    event = "BufRead",
     -- ft = "",
     keys = {
       { "<leader>cf", desc = "[c]ode [f]ormat" },
@@ -28,7 +27,7 @@ require("lze").load({
         },
         format_on_save = function(bufnr)
           -- Disable autoformat on certain filetypes
-          local ignore_filetypes = { "sql", "java" }
+          local ignore_filetypes = { "sql" }
           if vim.tbl_contains(ignore_filetypes, vim.bo[bufnr].filetype) then return end
           -- Disable with a global or buffer-local variable
           if vim.g.disable_autoformat or vim.b[bufnr].disable_autoformat then return end
