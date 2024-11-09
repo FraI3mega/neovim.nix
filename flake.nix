@@ -191,6 +191,9 @@
             dial-nvim
             sort-nvim
           ];
+          markdown = [
+            markview-nvim
+          ];
           extra = [
             oil-nvim
             nvim-web-devicons
