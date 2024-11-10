@@ -12,7 +12,32 @@ if colorschemeName == "catppuccin-mocha" then
       notify = true,
       neogit = true,
       diffview = true,
-      -- fidget = true,
+      dap_ui = true,
+      dap = true,
+      nvim_surround = true,
+      noice = true,
+      grug_far = true,
+      blink_cmp = true,
+      native_lsp = {
+        enabled = true,
+        virtual_text = {
+          errors = { "italic" },
+          hints = { "italic" },
+          warnings = { "italic" },
+          information = { "italic" },
+          ok = { "italic" },
+        },
+        underlines = {
+          errors = { "underline" },
+          hints = { "underline" },
+          warnings = { "underline" },
+          information = { "underline" },
+          ok = { "underline" },
+        },
+        inlay_hints = {
+          background = true,
+        },
+      },
     },
   })
 end
