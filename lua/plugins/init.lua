@@ -173,8 +173,9 @@ require("lze").load({
   { import = "plugins.image" },
   {
     "lazydev.nvim",
-    cmd = { "LazyDev" },
-    ft = "lua",
+    lazy = false,
+    -- cmd = { "LazyDev" },
+    -- ft = "lua",
     after = function(plugin)
       require("lazydev").setup({
         library = {
