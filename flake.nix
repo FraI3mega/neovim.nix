@@ -170,6 +170,7 @@
         languages = {
           rust = with pkgs.vimPlugins; [
             rustaceanvim
+            crates-nvim
           ];
         };
 
