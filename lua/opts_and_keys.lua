@@ -156,6 +156,36 @@ if nixCats("languages") then
     server = {
       on_attach = function(client, bufnr)
         -- you can also put keymaps in here
+        local prefix = "<leader>c"
+        local map = vim.keymap.set
+
+        map(
+          "v",
+          "J",
+          function() vim.cmd.RustLsp({ "moveItem", "down" }) end,
+          { desc = "Move item down", buffer = bufnr }
+        )
+        map("v", "K", function() vim.cmd.RustLsp({ "moveItem", "up" }) end, { desc = "Move item up", buffer = bufnr })
+
+        map(
+          "n",
+          prefix .. "r",
+          function() vim.cmd.RustLsp("runnables") end,
+          { desc = "Select target to run", buffer = bufnr }
+        )
+        map(
+          "n",
+          prefix .. "R",
+          function() vim.cmd.RustLsp({ "runnables", bang = true }) end,
+          { desc = "Rerun last target", buffer = bufnr }
+        )
+        map(
+          "n",
+          prefix .. "e",
+          function() vim.cmd.RustLsp("explainError") end,
+          { desc = "Explain current error", buffer = bufnr }
+        )
+        map({ "n", "v" }, "gJ", function() vim.cmd.RustLsp("joinLines") end, { desc = "Join lines", buffer = bufnr })
       end,
       default_settings = {
         -- rust-analyzer language server configuration
