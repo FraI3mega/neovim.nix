@@ -4,6 +4,7 @@ require("lze").load({
     -- cmd = { "" },
     -- event = "",
     -- ft = "",
+    lazy = false,
     keys = {
       { "<F5>", desc = "Debug: Start/Continue" },
       { "<F1>", desc = "Debug: Step Into" },
