@@ -9,8 +9,10 @@ if colorschemeName == "catppuccin-mocha" then
       neotest = true,
       which_key = true,
       barbar = true,
+      aerial = true,
       notify = true,
       neogit = true,
+      flash = true,
       diffview = true,
       dap_ui = true,
       dap = true,
@@ -18,6 +20,9 @@ if colorschemeName == "catppuccin-mocha" then
       noice = true,
       grug_far = true,
       blink_cmp = true,
+      markdown = true,
+      navic = { enabled = true, custom_bg = "lualine" },
+      gitsigns = true,
       native_lsp = {
         enabled = true,
         virtual_text = {

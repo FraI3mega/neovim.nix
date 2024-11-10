@@ -1,6 +1,8 @@
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
+vim.lsp.inlay_hint.enable(true)
+
 if os.getenv("WAYLAND_DISPLAY") and vim.fn.exepath("wl-copy") ~= "" then
   vim.g.clipboard = {
     name = "wl-clipboard",

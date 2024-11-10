@@ -171,6 +171,7 @@ require("lze").load({
   { import = "plugins.language-specific" },
   { import = "plugins.neotest" },
   { import = "plugins.image" },
+  { import = "plugins.ai" },
   {
     "lazydev.nvim",
     lazy = false,
@@ -315,6 +316,18 @@ require("lze").load({
     "grug-far.nvim",
     cmd = "GrugFar",
     after = function(plugin) require("grug-far").setup({}) end,
+  },
+  {
+    "markview.nvim",
+    lazy = false,
+    after = function()
+      local presets = require("markview.presets")
+      require("markview").setup({
+        filetypes = { "markdown", "quarto", "rmd" },
+        checkboxes = presets.checkboxes.nerd,
+        headings = presets.headings.slanted,
+      })
+    end,
   },
   {
     "markdown-preview.nvim",

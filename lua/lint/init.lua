@@ -1,25 +1,21 @@
 require("lze").load({
   {
-    "nvim-lint",
+    "none-ls.nvim",
     -- cmd = { "" },
     event = "FileType",
     -- ft = "",
     -- keys = "",
     -- colorscheme = "",
-    load = function(name) vim.cmd.packadd(name) end,
     after = function(plugin)
-      require("lint").linters_by_ft = {
-        -- NOTE: download some linters in lspsAndRuntimeDeps
-        -- and configure them here
-        -- markdown = {'vale',},
-        -- javascript = { 'eslint' },
-        -- typescript = { 'eslint' },
-        nix = { "statix" },
-        fish = { "fish" },
-      }
-
-      vim.api.nvim_create_autocmd({ "BufWritePost" }, {
-        callback = function() require("lint").try_lint() end,
+      local null_ls = require("null-ls")
+      null_ls.setup({
+        sources = {
+          null_ls.builtins.code_actions.statix,
+          null_ls.builtins.diagnostics.actionlint,
+          null_ls.builtins.diagnostics.commitlint,
+          null_ls.builtins.diagnostics.fish,
+          null_ls.builtins.diagnostics.markdownlint_cli2,
+        },
       })
     end,
   },
