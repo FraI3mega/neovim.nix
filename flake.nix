@@ -35,6 +35,11 @@
       flake = false;
     };
 
+    "plugins-codecompanion" = {
+      url = "github:olimorris/codecompanion.nvim";
+      flake = false;
+    };
+
     blink-cmp.url = "github:saghen/blink.cmp";
     # neovim-nightly-overlay = {
     #   url = "github:nix-community/neovim-nightly-overlay";
@@ -140,6 +145,10 @@
         ];
         lint = with pkgs; [
           statix
+          actionlint
+          commitlint
+          fish
+          markdownlint-cli2
         ];
         # but you can choose which ones you want
         # per nvim package you export
@@ -192,9 +201,6 @@
             dial-nvim
             sort-nvim
           ];
-          markdown = [
-            markview-nvim
-          ];
           extra = [
             oil-nvim
             nvim-web-devicons
@@ -229,13 +235,14 @@
           nvim-dap-virtual-text
         ];
         lint = with pkgs.vimPlugins; [
-          nvim-lint
+          none-ls-nvim
         ];
         format = with pkgs.vimPlugins; [
           conform-nvim
         ];
         markdown = with pkgs.vimPlugins; [
           markdown-preview-nvim
+          markview-nvim
         ];
         neonixdev = with pkgs.vimPlugins; [
           lazydev-nvim
@@ -325,6 +332,10 @@
             grug-far-nvim
             codesnap-nvim
           ];
+          ai = with pkgs.vimPlugins; [
+            pkgs.neovimPlugins.codecompanion
+            render-markdown-nvim
+          ];
           fun = with pkgs.vimPlugins; [
             cellular-automaton-nvim
             pkgs.awesomeNeovimPlugins.nvim-tetris
@@ -400,7 +411,7 @@
           gitPlugins = true;
           customPlugins = true;
           markdown = true;
-          lint = false;
+          lint = true;
           format = true;
           neonixdev = true;
           debug = true;

@@ -7,11 +7,11 @@
         "nixpkgs": "nixpkgs"
       },
       "locked": {
-        "lastModified": 1731173260,
-        "narHash": "sha256-ykBOLXIsaA+/kFO5VsToS0l3keh8X4z/45LHIIT4U58=",
+        "lastModified": 1731203079,
+        "narHash": "sha256-+qLCkGrjuZAgvoeRi7Zjxav2KlhH0DvXAjSXQSBPW0Q=",
         "owner": "m15a",
         "repo": "flake-awesome-neovim-plugins",
-        "rev": "aa1329bd11ce07aca204cb5f086a77c0c9c2f2ef",
+        "rev": "669fad436c2cf89ffa5fc75f31c77e787af24d81",
         "type": "github"
       },
       "original": {
@@ -205,6 +205,22 @@
         "type": "github"
       }
     },
+    "plugins-codecompanion": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1731171291,
+        "narHash": "sha256-70CHaDg+cLButrCzYzDqr6ZHaO0hskCJrGjyRD52+YM=",
+        "owner": "olimorris",
+        "repo": "codecompanion.nvim",
+        "rev": "0f10c646d60b6f4650aa533c9c2968a43ca86d7c",
+        "type": "github"
+      },
+      "original": {
+        "owner": "olimorris",
+        "repo": "codecompanion.nvim",
+        "type": "github"
+      }
+    },
     "plugins-heirline-components": {
       "flake": false,
       "locked": {
@@ -244,6 +260,7 @@
         "nixCats": "nixCats",
         "nixpkgs": "nixpkgs_3",
         "plugins-auto-save": "plugins-auto-save",
+        "plugins-codecompanion": "plugins-codecompanion",
         "plugins-heirline-components": "plugins-heirline-components",
         "plugins-large_file": "plugins-large_file"
       }
