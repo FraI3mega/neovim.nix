@@ -8,6 +8,7 @@ return {
     -- keys = "",
     -- colorscheme = "",
     after = function(plugin)
+      local CodeCompanion = require("plugins.lualine_components.CodeCompanion")
       require("lualine").setup({
         options = {
           theme = "catppuccin",
@@ -28,6 +29,7 @@ return {
           lualine_x = {
             "searchcount",
             "filetype",
+            CodeCompanion,
           },
         },
         inactive_sections = {

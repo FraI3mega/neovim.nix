@@ -207,6 +207,7 @@
             smart-splits-nvim
             persisted-nvim
             otter-nvim
+            vim-wakatime
           ];
           blink = with pkgs.vimPlugins; [
             blink-cmp.outputs.packages.${pkgs.system}.blink-cmp

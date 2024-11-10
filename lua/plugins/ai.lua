@@ -1,7 +1,7 @@
 return {
   {
     "codecompanion",
-    lazy = false,
+    event = "DeferredUIEnter",
     after = function(plugin)
       require("codecompanion").setup({
         display = {
