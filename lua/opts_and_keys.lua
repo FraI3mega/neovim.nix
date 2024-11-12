@@ -153,7 +153,9 @@ vim.keymap.set(
 if nixCats("languages") then
   vim.g.rustaceanvim = {
     -- Plugin configuration
-    tools = {},
+    tools = {
+      executor = "toggleterm",
+    },
     -- LSP configuration
     server = {
       on_attach = function(client, bufnr)
@@ -193,10 +195,11 @@ if nixCats("languages") then
         -- rust-analyzer language server configuration
         ["rust-analyzer"] = {
           inlayHints = {
-            lifetimeElisionHints = {
-              enable = true,
-              useParameterNames = true,
-            },
+            enable = true,
+            typeHints = true, -- Show types of variables and return types.
+            parameterHints = true, -- Show parameter names for functions.
+            chainingHints = true, -- Show hints in method chains.
+            lifetimeElisionHints = "always", -- Show hints for lifetime elision.
           },
         },
       },
