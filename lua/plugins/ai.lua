@@ -1,7 +1,12 @@
 return {
   {
     "codecompanion",
-    event = "DeferredUIEnter",
+    keys = {
+      { "<m-a>", mode = { "n", "v" }, desc = "Open CodeCompanion Actions" },
+      { "<leader>[t", mode = { "n", "v" }, desc = "Toggle CodeCompanion Chat" },
+      { "ga", mode = "v", desc = "Add selected text to CodeCompanion" },
+    },
+    cmd = "CodeCompanion",
     after = function(plugin)
       require("codecompanion").setup({
         display = {
