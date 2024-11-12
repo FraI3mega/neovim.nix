@@ -19,7 +19,10 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
     nixCats.url = "github:BirdeeHub/nixCats-nvim";
+
     awesome-neovim-plugins.url = "github:m15a/flake-awesome-neovim-plugins";
+    rustaceanvim.url = "github:mrcjkb/rustaceanvim";
+    blink-cmp.url = "github:saghen/blink.cmp";
     "plugins-auto-save" = {
       url = "github:okuuva/auto-save.nvim";
       flake = false;
@@ -40,7 +43,6 @@
       flake = false;
     };
 
-    blink-cmp.url = "github:saghen/blink.cmp";
     # neovim-nightly-overlay = {
     #   url = "github:nix-community/neovim-nightly-overlay";
     # };
@@ -106,6 +108,7 @@
               (utils.standardPluginOverlay inputs)
               # add any other flake overlays here.
               inputs.awesome-neovim-plugins.overlays.default
+              inputs.rustaceanvim.overlays.default
             ];
         in {
           inherit dependencyOverlays;
