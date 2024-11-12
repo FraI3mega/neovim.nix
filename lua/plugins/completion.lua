@@ -10,7 +10,7 @@ require("blink-cmp").setup({
   trigger = { signature_help = { enabled = true } },
   windows = {
     documentation = { auto_show = true },
-    autocomplete = { draw = { columns = { { "label", "label_description", gap = 1 }, { "kind_icon" } } } },
+    autocomplete = { draw = { columns = { { "label", "label_description", gap = 1 }, { "kind_icon", "kind" } } } },
   },
   fuzzy = { prebuilt_binaries = { download = false } },
   sources = {

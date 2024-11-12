@@ -101,7 +101,9 @@ require("lze").load({
 
       -- NOTE: Install lang specific config
       -- either in here, or in a separate plugin spec as demonstrated for go below.
+
       require("debug.probe-rs")
+      require("dap.ext.vscode").load_launchjs()
     end,
   },
 })
