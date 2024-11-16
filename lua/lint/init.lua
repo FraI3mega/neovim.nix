@@ -12,7 +12,6 @@ require("lze").load({
         sources = {
           null_ls.builtins.code_actions.statix,
           null_ls.builtins.diagnostics.actionlint,
-          null_ls.builtins.diagnostics.commitlint,
           null_ls.builtins.diagnostics.fish,
           null_ls.builtins.diagnostics.markdownlint_cli2,
         },

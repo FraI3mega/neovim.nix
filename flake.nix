@@ -149,7 +149,6 @@
         lint = with pkgs; [
           statix
           actionlint
-          commitlint
           fish
           markdownlint-cli2
           deadnix
@@ -165,6 +164,7 @@
           isort
           alejandra
           taplo
+          yamlfmt
         ];
         neonixdev = {
           inherit
