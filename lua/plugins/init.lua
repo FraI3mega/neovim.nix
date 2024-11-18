@@ -125,6 +125,10 @@ if nixCats("general.extra") then
       ["g."] = "actions.toggle_hidden",
       ["g\\"] = "actions.toggle_trash",
     },
+    lsp_file_methods = {
+      autosave_changes = "unmodified",
+    },
+    watch_for_changes = true
   })
   vim.keymap.set("n", "-", "<cmd>Oil<CR>", { noremap = true, desc = "Open Parent Directory" })
   vim.keymap.set("n", "<leader>-", "<cmd>Oil .<CR>", { noremap = true, desc = "Open nvim root directory" })
