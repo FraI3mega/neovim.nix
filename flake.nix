@@ -141,7 +141,8 @@
           universal-ctags
           ripgrep
           fd
-          ruff-lsp
+          ruff
+          basedpyright
           imagemagick
           fish
           git-absorb

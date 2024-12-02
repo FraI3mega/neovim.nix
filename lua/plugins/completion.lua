@@ -6,12 +6,13 @@
 
 require("blink-cmp").setup({
   keymap = { preset = "enter" },
-  accept = { auto_brackets = { enabled = true } },
-  trigger = { signature_help = { enabled = true } },
-  windows = {
+  completion = {
+    accept = { auto_brackets = { enabled = true } },
+
     documentation = { auto_show = true },
-    autocomplete = { draw = { columns = { { "label", "label_description", gap = 1 }, { "kind_icon", "kind" } } } },
+    menu = { draw = { columns = { { "label", "label_description", gap = 1 }, { "kind_icon", "kind" } } } },
   },
+  signature = { enabled = true },
   fuzzy = { prebuilt_binaries = { download = false } },
   sources = {
     -- add lazydev to your completion providers
