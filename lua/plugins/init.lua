@@ -128,7 +128,7 @@ if nixCats("general.extra") then
     lsp_file_methods = {
       autosave_changes = "unmodified",
     },
-    watch_for_changes = true
+    watch_for_changes = true,
   })
   vim.keymap.set("n", "-", "<cmd>Oil<CR>", { noremap = true, desc = "Open Parent Directory" })
   vim.keymap.set("n", "<leader>-", "<cmd>Oil .<CR>", { noremap = true, desc = "Open nvim root directory" })
@@ -187,6 +187,24 @@ require("lze").load({
           { words = { "nixCats" }, path = (require("nixCats").nixCatsPath or "") .. "/lua" },
         },
       })
+    end,
+  },
+  {
+    "smart-open.nvim",
+    keys = {
+      {
+        "<leader>o",
+        desc = "Smart open",
+      },
+    },
+    after = function(plugin)
+      require("telescope").load_extension("smart_open")
+      vim.keymap.set(
+        "n",
+        "<leader>o",
+        function() require("telescope").extensions.smart_open.smart_open() end,
+        { noremap = true, silent = true }
+      )
     end,
   },
   {

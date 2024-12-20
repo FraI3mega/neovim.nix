@@ -205,6 +205,7 @@
             mini-nvim
             dial-nvim
             sort-nvim
+            sqlite-lua
           ];
           extra = [
             oil-nvim
@@ -267,32 +268,9 @@
         gitPlugins = with pkgs.neovimPlugins; [
         ];
         general = {
-          # cmp = with pkgs.vimPlugins; [
-          #   # cmp stuff
-          #   # nvim-cmp
-          #
-          #   luasnip
-          #   friendly-snippets
-          #   cmp_luasnip
-          #   cmp-buffer
-          #   cmp-path
-          #   cmp-nvim-lua
-          #   cmp-nvim-lsp
-          #   cmp-cmdline
-          #   cmp-nvim-lsp-signature-help
-          #   cmp-cmdline-history
-          #   lspkind-nvim
-          # ];
           treesitter = with pkgs.vimPlugins; [
             nvim-treesitter-textobjects
             nvim-treesitter.withAllGrammars
-            # This is for if you only want some of the grammars
-            # (nvim-treesitter.withPlugins (
-            #   plugins: with plugins; [
-            #     nix
-            #     lua
-            #   ]
-            # ))
           ];
           telescope = with pkgs.vimPlugins; [
             telescope-fzf-native-nvim
@@ -300,6 +278,7 @@
             telescope-nvim
           ];
           always = with pkgs.vimPlugins; [
+            smart-open-nvim
             nvim-lspconfig
             lualine-nvim
             barbar-nvim
@@ -358,6 +337,7 @@
       sharedLibraries = {
         general = with pkgs; [
           # libgit2
+          sqlite
         ];
       };
 
@@ -426,6 +406,7 @@
           nixdExtras = {
             nixpkgs = nixpkgs.outPath;
           };
+          # sqlite_path = "${pkgs.sqlite.out}/lib/libsqlite3.so";
         };
       };
     };
