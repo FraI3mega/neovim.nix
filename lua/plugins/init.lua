@@ -331,7 +331,7 @@ require("lze").load({
     end,
   },
   {
-    "heirline-components",
+    "heirline-components-nvim",
     dep_of = "heirline.nvim",
   },
   {
