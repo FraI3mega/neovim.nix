@@ -962,38 +962,6 @@
         "type": "github"
       }
     },
-    "plugins-codecompanion": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1736034516,
-        "narHash": "sha256-v/ttG6QJ/BFqFNKPkx4DoyNH2sycWxQ24NYascGn+Ns=",
-        "owner": "olimorris",
-        "repo": "codecompanion.nvim",
-        "rev": "3516e46a62ebb151e6fa0afe4ac631432994cc3a",
-        "type": "github"
-      },
-      "original": {
-        "owner": "olimorris",
-        "repo": "codecompanion.nvim",
-        "type": "github"
-      }
-    },
-    "plugins-heirline-components": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1735493405,
-        "narHash": "sha256-M2muEW4RFQxdaJjZaXMXosy0M7Zj4MlbITRpRWpinwo=",
-        "owner": "Zeioth",
-        "repo": "heirline-components.nvim",
-        "rev": "935f29dabd86f2669e0b3c8dd283b2d3b1cfaee7",
-        "type": "github"
-      },
-      "original": {
-        "owner": "Zeioth",
-        "repo": "heirline-components.nvim",
-        "type": "github"
-      }
-    },
     "plugins-large_file": {
       "flake": false,
       "locked": {
@@ -1037,8 +1005,6 @@
         "nixCats": "nixCats",
         "nixpkgs": "nixpkgs_3",
         "plugins-auto-save": "plugins-auto-save",
-        "plugins-codecompanion": "plugins-codecompanion",
-        "plugins-heirline-components": "plugins-heirline-components",
         "plugins-large_file": "plugins-large_file",
         "rustaceanvim": "rustaceanvim"
       }

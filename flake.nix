@@ -33,16 +33,6 @@
       flake = false;
     };
 
-    "plugins-heirline-components" = {
-      url = "github:Zeioth/heirline-components.nvim";
-      flake = false;
-    };
-
-    "plugins-codecompanion" = {
-      url = "github:olimorris/codecompanion.nvim";
-      flake = false;
-    };
-
     # neovim-nightly-overlay = {
     #   url = "github:nix-community/neovim-nightly-overlay";
     # };
@@ -289,7 +279,7 @@
             diffview-nvim
             vim-fugitive
             heirline-nvim
-            pkgs.neovimPlugins.heirline-components
+            pkgs.awesomeNeovimPlugins.heirline-components-nvim
             vim-rhubarb
             nvim-surround
             flash-nvim
@@ -318,7 +308,7 @@
             codesnap-nvim
           ];
           ai = with pkgs.vimPlugins; [
-            pkgs.neovimPlugins.codecompanion
+            pkgs.awesomeNeovimPlugins.codecompanion-nvim
             render-markdown-nvim
           ];
           fun = with pkgs.vimPlugins; [
