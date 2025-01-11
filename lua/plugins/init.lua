@@ -90,6 +90,12 @@ require("dial.config").augends:register_group({
 require("sort").setup({})
 -- mini plugins
 require("mini.ai").setup({})
+
+local dropbar_api = require("dropbar.api")
+vim.keymap.set("n", "<Leader>;", dropbar_api.pick, { desc = "Pick symbols in winbar" })
+vim.keymap.set("n", "[;", dropbar_api.goto_context_start, { desc = "Go to start of current context" })
+vim.keymap.set("n", "];", dropbar_api.select_next_context, { desc = "Select next context" })
+
 if nixCats("general.extra") then
   -- I didnt want to bother with lazy loading this.
   -- I could put it in opt and put it in a spec anyway
@@ -417,15 +423,6 @@ require("lze").load({
     "comment.nvim",
     event = "DeferredUIEnter",
     after = function(plugin) require("Comment").setup() end,
-  },
-  {
-    "nvim-navic",
-    dep_of = "barbecue.nvim",
-    after = function(plugin)
-      require("nvim-navic").setup({
-        lsp = { auto_attach = true },
-      })
-    end,
   },
   {
     "indent-blankline.nvim",

@@ -196,6 +196,7 @@
             dial-nvim
             sort-nvim
             sqlite-lua
+            dropbar-nvim
           ];
           extra = [
             oil-nvim
@@ -272,8 +273,6 @@
             nvim-lspconfig
             lualine-nvim
             barbar-nvim
-            barbecue-nvim
-            nvim-navic
             gitsigns-nvim
             neogit
             diffview-nvim
