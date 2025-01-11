@@ -33,6 +33,11 @@
       flake = false;
     };
 
+    "plugins-cord-nvim" = {
+      url = "github:vyfor/cord.nvim/client-server";
+      flake = false;
+    };
+
     # neovim-nightly-overlay = {
     #   url = "github:nix-community/neovim-nightly-overlay";
     # };
@@ -136,6 +141,7 @@
           imagemagick
           fish
           git-absorb
+          curl
         ];
         lint = with pkgs; [
           statix
@@ -300,7 +306,7 @@
             nvim-bqf
             image-nvim
             img-clip-nvim
-            cord-nvim
+            pkgs.neovimPlugins.cord-nvim
             twilight-nvim
             zen-mode-nvim
             grug-far-nvim

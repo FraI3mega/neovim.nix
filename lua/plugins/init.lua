@@ -552,13 +552,16 @@ require("lze").load({
     after = function(plugin) require("aerial").setup({ show_guides = true }) end,
   },
   {
-    "cord.nvim",
+    "cord-nvim",
     event = "DeferredUIEnter",
     after = function(plugin)
       require("cord").setup({
-        buttons = { { label = "View Repository", url = "git" } },
-        display = { workspace_blacklist = { "franek" } },
-        idle = { timeout = 300000 },
+        buttons = {
+          {
+            label = function(opts) return opts.repo_url and "View Repository" or "Website" end,
+            url = function(opts) return opts.repo_url or "https://213742.xyz" end,
+          },
+        },
       })
     end,
   },
