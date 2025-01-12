@@ -3,7 +3,6 @@ on:
   workflow_dispatch: # allows manual triggering
   schedule:
     - cron: "0 0 * * 0" # runs weekly on Sunday at 00:00
-
 jobs:
   lockfile:
     runs-on: ubuntu-latest
@@ -12,7 +11,19 @@ jobs:
         uses: actions/checkout@v4
       - name: Install Nix
         uses: DeterminateSystems/nix-installer-action@v1
+      - uses: DeterminateSystems/magic-nix-cache-action@main
+      - uses: DeterminateSystems/flake-checker-action@main
       - name: Update flake.lock
         uses: DeterminateSystems/update-flake-lock@main
         with:
           token: ${{ secrets.GH_TOKEN_FOR_UPDATES }}
+      - name: Build Neovim
+        run: nix build .
+      - name: Test Neovim startup
+        run: |
+          output=$(./result/bin/nvim --headless +q 2>&1)
+          echo "$output"
+          if echo "$output" | grep -q "Error"; then
+            echo "Neovim failed to start correctly."
+            exit 1
+          fi
