@@ -8,11 +8,11 @@
         "treefmt-nix": "treefmt-nix"
       },
       "locked": {
-        "lastModified": 1737653105,
-        "narHash": "sha256-cpjRMpxY4oX8xc+CiXOaOi3YNq41h+4mgDho1DzetB4=",
+        "lastModified": 1737825789,
+        "narHash": "sha256-/P/0nZah7mnh3zvxp8pA0egklIQ9xlD0Fl/KUeAFIE4=",
         "owner": "m15a",
         "repo": "flake-awesome-neovim-plugins",
-        "rev": "fada7694e5eaec9070b530a4765501770200a391",
+        "rev": "bd327f6c1dfa78623b776c795c8550d588c1d051",
         "type": "github"
       },
       "original": {
@@ -28,11 +28,11 @@
         "nixpkgs": "nixpkgs_2"
       },
       "locked": {
-        "lastModified": 1737654656,
-        "narHash": "sha256-HJ3/Qovyj1lcnlrYz6lueGVxNSx/EsPh8ORgoVvpJ4Y=",
+        "lastModified": 1737829213,
+        "narHash": "sha256-NsIJOO90INRz+wqjx/+3oUsnzd2BeFOkxaDbWrl6oFk=",
         "owner": "saghen",
         "repo": "blink.cmp",
-        "rev": "c4eafc1f87380da04eb8b9c5b52395c48edd102e",
+        "rev": "0b33b6fc01493a85cd9d7786bafd39073de76772",
         "type": "github"
       },
       "original": {
@@ -681,11 +681,11 @@
     },
     "nixCats": {
       "locked": {
-        "lastModified": 1737645501,
-        "narHash": "sha256-XBM39dAYHUD719EakJeaz7Z9MG3v79Ek3JEnsA3LWpE=",
+        "lastModified": 1737835220,
+        "narHash": "sha256-pdYd1zjlpFJTP0puKFVkO+R6xZXVmO6Ss0Ln4uWHXBs=",
         "owner": "BirdeeHub",
         "repo": "nixCats-nvim",
-        "rev": "de01172402cce6aeb956eb5c18a7f883c695d844",
+        "rev": "c677f60f82f47e5dd1427e37f6ce7d87aae7d926",
         "type": "github"
       },
       "original": {
@@ -836,11 +836,11 @@
     },
     "nixpkgs_3": {
       "locked": {
-        "lastModified": 1737557748,
-        "narHash": "sha256-BaMuhctP1x00+8cBE2cJveJQb70/tWHI50MHj/ZrtOY=",
+        "lastModified": 1737717945,
+        "narHash": "sha256-ET91TMkab3PmOZnqiJQYOtSGvSTvGeHoegAv4zcTefM=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "606996d74f6e2a12635d41c1bf58bfc7ea3bb5ec",
+        "rev": "ecd26a469ac56357fd333946a99086e992452b6a",
         "type": "github"
       },
       "original": {
@@ -965,11 +965,11 @@
     "plugins-cord-nvim": {
       "flake": false,
       "locked": {
-        "lastModified": 1737661449,
-        "narHash": "sha256-Qxb7TYrKPCDHrfFinvQq7dbFbcvnLjUbvEVpvsQCeH0=",
+        "lastModified": 1737750480,
+        "narHash": "sha256-2nFRtvjh2pHcA4uB3ZeCrHUh3MubQk8CPFsQYg/QK7I=",
         "owner": "vyfor",
         "repo": "cord.nvim",
-        "rev": "33d20ab3ea7ea5a38a5a569abc1409d4e5a43024",
+        "rev": "e88d2ff0e0217cf9f4598246d1e350187c2997be",
         "type": "github"
       },
       "original": {
