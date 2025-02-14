@@ -34,7 +34,7 @@
     };
 
     "plugins-cord-nvim" = {
-      url = "github:vyfor/cord.nvim/client-server";
+      url = "github:vyfor/cord.nvim";
       flake = false;
     };
 
