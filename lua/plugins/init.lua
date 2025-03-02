@@ -416,9 +416,15 @@ require("lze").load({
     after = function()
       local presets = require("markview.presets")
       require("markview").setup({
-        filetypes = { "markdown", "quarto", "rmd" },
-        checkboxes = presets.checkboxes.nerd,
-        headings = presets.headings.slanted,
+        preview = {
+          icon_provider = "devicons",
+          filetypes = { "markdown", "quarto", "rmd" },
+        },
+        markdown = {
+          checkboxes = presets.checkboxes.nerd,
+          headings = presets.headings.slanted,
+          tables = presets.tables.rounded,
+        },
       })
     end,
   },

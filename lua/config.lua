@@ -1,8 +1,5 @@
 require("opts_and_keys")
 
--- NOTE: register the extra lze handlers because we want to use them.
-require("lze").register_handlers(require("lze.x"))
-
 require("plugins")
 
 -- I dont need to explain why this is called lsp right?

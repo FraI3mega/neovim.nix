@@ -211,6 +211,7 @@
             persisted-nvim
             otter-nvim
             vim-wakatime
+            lspkind-nvim
           ];
           blink = with pkgs.vimPlugins; [
             blink-cmp.outputs.packages.${pkgs.system}.blink-cmp
