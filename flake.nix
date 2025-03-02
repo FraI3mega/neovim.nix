@@ -166,7 +166,6 @@
         neonixdev = {
           inherit
             (pkgs)
-            nix-doc
             lua-language-server
             nixd
             ;
