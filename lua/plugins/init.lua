@@ -633,6 +633,7 @@ require("lze").load({
             url = function(opts) return opts.repo_url or "https://213742.xyz" end,
           },
         },
+        display = { theme = "catppuccin" },
       })
     end,
   },
