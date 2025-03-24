@@ -429,6 +429,10 @@ require("lze").load({
     end,
   },
   {
+    "typst-preview.nvim",
+    ft = "typst",
+  },
+  {
     "markdown-preview.nvim",
     cmd = { "MarkdownPreview", "MarkdownPreviewStop", "MarkdownPreviewToggle" },
     ft = "markdown",

@@ -142,6 +142,7 @@
           fish
           git-absorb
           curl
+          tinymist
         ];
         lint = with pkgs; [
           statix
@@ -311,6 +312,7 @@
             zen-mode-nvim
             grug-far-nvim
             codesnap-nvim
+            typst-preview-nvim
           ];
           ai = with pkgs.vimPlugins; [
             pkgs.awesomeNeovimPlugins.codecompanion-nvim
