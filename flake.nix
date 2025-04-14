@@ -357,9 +357,6 @@
       # in your lua config via
       # vim.g.python3_host_prog
       # or run from nvim terminal via :!<packagename>-python3
-      extraPython3Packages = {
-        test = _: [];
-      };
       # populates $LUA_PATH and $LUA_CPATH
       extraLuaPackages = {
         general = [(lp: with lp; [magick])];
