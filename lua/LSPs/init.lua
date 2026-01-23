@@ -67,6 +67,13 @@ else
   servers.nil_ls = {}
 end
 
+vim.diagnostic.config({
+  virtual_lines = {
+    current_line = true,
+  },
+  virtual_text = true,
+})
+
 servers.tinymist = {
   formatterMode = "typstyle",
   exportPdf = "onType",
